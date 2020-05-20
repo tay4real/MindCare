@@ -15,7 +15,7 @@ import Register from '../views/Register'
 import Footer from '../views/Footer'
 
 
-import Aux from '../hoc/Auxiliary'
+
 
 
 var hist = createBrowserHistory();
@@ -45,20 +45,17 @@ export class Routes extends Component {
   
     return (
         <Router history={hist}>
-        <Aux>
-            <Route path="/" render={(props) => <TopNavBar {...props} toggleSidebar={this.SidebarToggle} />} />
-            <Route path="/" render={(props) => <SideNavBar {...props} closed={this.SidebarToggle} show={this.state.showSidebar} />} />
+     
+            <Route path="/" render={(props) => <TopNavBar  toggleSidebar={this.SidebarToggle} />} />
+            <Route path="/" render={(props) => <SideNavBar closed={this.SidebarToggle} show={this.state.showSidebar} />} />
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/about" component={About}/>
               
               <Route path="/signin" component={SignIn}/>
               <Route path="/signup" component={Register}/>
-              
-
             </Switch>
-            <Footer />
-          </Aux>
+            <Route path="/" component={Footer} />
         </Router>
       
     )

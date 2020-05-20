@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import NavLink from '../Navlinks/NavLink'
+
+import { Link } from 'react-router-dom'
+
 
 export class SideNavBar extends Component {
      
@@ -8,18 +10,16 @@ export class SideNavBar extends Component {
        
         return (
             
-            <aux>
+          
               <nav className="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style={{display: this.props.show ? "block" : "none"}} id="mySidebar">
-                <NavLink className="w3-bar-item w3-button w3-large w3-padding-16" onClick={this.props.closed}>
+                <Link to="#" className="w3-bar-item w3-button w3-large w3-padding-16" onClick={this.props.closed}>
                 Close x
-                </NavLink>
+                </Link>
 
-                <NavLink to="/about" className="w3-bar-item w3-button" onClick={this.props.closed}>ABOUT</NavLink>
-                <NavLink activeClassName="active" to="/signup" className="w3-bar-item w3-button" onClick={this.props.closed}>SIGN UP</NavLink>
-                <NavLink activeClassName="active" to="/signin" className="w3-bar-item w3-button" onClick={this.props.closed}>SIGN IN</NavLink> 
-            </nav>      
-                
-            </aux>
+                <Link to="/about" className="w3-bar-item w3-button" onClick={this.props.closed}>ABOUT</Link>
+                <Link  to="/signup" className="w3-bar-item w3-button" onClick={this.props.closed}>SIGN UP</Link>
+                <Link  to="/signin" className="w3-bar-item w3-button" onClick={this.props.closed}>SIGN IN</Link> 
+              </nav>      
             
         )
     }

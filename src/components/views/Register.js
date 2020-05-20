@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {register} from '../Users/UserFunctions'
 import Link from '@material-ui/core/Link';
+import axios from 'axios'
 
 class Register extends Component{
     constructor(){
@@ -10,7 +10,9 @@ class Register extends Component{
             last_name: '',
             email : '',
             password : '',
-            re_password:''
+            re_password:'',
+            errors: '',
+            success:'',
             
         }
 
@@ -32,11 +34,30 @@ class Register extends Component{
             re_password: this.state.re_password
         }
 
-        register(newUser).then(res => {
-            if(res){
-                this.props.history.push(`/login`)
-            }
-        })
+        // register(newUser).then(res => {
+        //     if(res){
+        //         this.props.history.push(`/login`)
+        //     }
+        // })
+
+        axios.post('https://evening-mesa-59655.herokuapp.com/api/register',newUser)
+          .then((newUser) => {
+            console.log(newUser);
+            this.setState({
+                success:'You have succesfully Registered. Sign in to Continue',
+                errors: ''
+            })
+          })
+          .catch((err) =>{
+            console.log(err)
+            this.setState({
+                success: '',
+                errors: ["Email already taken"] 
+            })
+          })
+
+        
+
     }
 
     render(){
@@ -49,13 +70,15 @@ class Register extends Component{
                             <h1 className="h3  text-center font-weight-normal">
                                 Register
                             </h1>
+                            <div className= "p-3 mb-2 bg-success text-white text-center" style={{display: this.state.success ? "block" : "none"}}>{this.state.success}</div>
+                            <div className= "p-3 mb-2 bg-danger text-white text-center" style={{display: this.state.errors ? "block" : "none"}}>{this.state.errors}</div>
                         </div>
                         
                         <form noValidate onSubmit = {this.onSubmit}>
                             
                             <div className="card-body">
-                            <div class="row">
-                                <div class="col">
+                            <div className="row">
+                                <div className="col">
                                     <div className="form-group">
                                     <label htmlFor="first_name">First Name</label>
                                     <input
@@ -68,7 +91,7 @@ class Register extends Component{
                                     />
                                 </div>
                                 </div>
-                                    <div class="col">
+                                    <div className="col">
                                         <div className="form-group">
                                         <label htmlFor="last_name">Last Name</label>
                                         <input
@@ -95,8 +118,8 @@ class Register extends Component{
                                 onChange = {this.onChange}
                                 />
                             </div>
-                            <div class="row">
-                                <div class="col">
+                            <div className="row">
+                                <div className="col">
                                     <div className="form-group">
                                         <label htmlFor="password">Password</label>
                                         <input
@@ -109,7 +132,7 @@ class Register extends Component{
                                         />
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div className="col">
                                     <div className="form-group">
                                         <label htmlFor="re_password">Confirm Password</label>
                                         <input
@@ -126,6 +149,7 @@ class Register extends Component{
                             </div>
                             <div className="card-footer bg-transparent border-primary">
                                 <button type="submit" className="btn btn-lg btn-primary btn-block">Register</button>
+                                
                                 <div className="col-sm text-center pt-2" >
                                     <Link href="/signin" variant="body1">
                                         Already have an account? Sign in

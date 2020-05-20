@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import NavLink from '../Navlinks/NavLink'
+
+import { Link } from 'react-router-dom'
 
 
 export class Home extends Component {
@@ -11,7 +12,7 @@ export class Home extends Component {
                     <span className="w3-xxlarge w3-hide-large w3-hide-medium">Know Your Mental Health Status</span><br />
                     
                     <span className="w3-large">Stop wasting valuable time with projects that just isn't you.</span>
-                    <p><NavLink to="/signIn" className="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Take a Test</NavLink></p>
+                    <p><Link to="/signIn" className="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Take a Test</Link></p>
                 </div> 
                 <div className="w3-display-bottomleft w3-text-grey w3-large" style={{padding:"24px 48px"}}>
                     <i className="fa fa-facebook-official w3-hover-opacity"></i>

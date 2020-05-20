@@ -1,17 +1,17 @@
 import axios from 'axios'
 
-export const register = newUser => {
-    return axios
-    .post(`https://evening-mesa-59655.herokuapp.com/api/register`, newUser, {
-        
-    })
+export const register = newUser => 
+     axios.post(`https://evening-mesa-59655.herokuapp.com/api/register`, newUser, {
+})
     .then(res =>{
-        console.log(newUser)
+        console.log(res)
+        
     })
     .catch(err => {
         console.log(err)
+    
     })
-}
+
 
 export const login = user => {
     return axios
