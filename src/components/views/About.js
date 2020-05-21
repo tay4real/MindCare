@@ -24,7 +24,6 @@ export class About extends Component {
         console.log(err)
       })    
   }
-
   postData(){
     const data = {
       "userId": 1,

@@ -9,7 +9,6 @@ import TopNavBar from '../views/TopNavBar'
 import SideNavBar from '../views/SideNavBar'
 import Home from '../views/Home'
 import About from '../views/About'
-
 import SignIn from '../views/SignIn'
 import Register from '../views/Register'
 import Footer from '../views/Footer'
@@ -51,11 +50,12 @@ export class Routes extends Component {
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/about" component={About}/>
-              
               <Route path="/signin" component={SignIn}/>
               <Route path="/signup" component={Register}/>
             </Switch>
             <Route path="/" component={Footer} />
+            
+          
         </Router>
       
     )
