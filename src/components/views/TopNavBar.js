@@ -14,6 +14,7 @@ export class TopNavBar extends Component {
            
             <div className="w3-right  w3-hide-small">
               <Link to="/about" className="w3-bar-item w3-button">ABOUT</Link>
+              <Link to="/categories" className="w3-bar-item w3-button">MENTAL HEALTH TEST</Link>
               <Link to="/signup" className="w3-bar-item w3-button">SIGN UP</Link>
               <Link  to="/signin" className="w3-bar-item w3-button" >SIGN IN</Link>
             </div>

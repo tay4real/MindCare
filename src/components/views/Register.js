@@ -72,14 +72,14 @@ class Register extends Component {
               ))}
             </div>
           ))}
-        </div>
+        </div>  
       );
     }
   }
 
   render() {
     return (
-      <div className="container" style={{ padding: "128px 16px" }}>
+      <div className="container" style={{ padding: "100px 16px" }}>
         <div className="row card">
           <div className="col-md-6 mt-5 mb-5 mx-auto">
             <div className="card-header bg-transparent border-primary">
