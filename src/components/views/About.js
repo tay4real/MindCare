@@ -3,16 +3,18 @@ import React, { Component } from "react";
 export class About extends Component {
   render() {
     return (
-      <div className="container" style={{ padding: "128px 16px" }}>
-        <h1 className="w3-center">ABOUT MINDCARE</h1>
+      <div className="container" style={{ padding: "100px 16px" }}>
+        <div className="col-md-9 mt-3 mb-3 mx-auto">
+          <h1 className="h3  text-center font-weight-normal">
+            Select Test Types
+          </h1>
 
-        <center>
-          <p className="row">
+          <p className="text-center">
             MindCare is an app that measure people’s mental health by taking
             simple test based on the mental illness. Test results will be sent
             to your email after completion.
           </p>
-        </center>
+        </div>
       </div>
     );
   }
