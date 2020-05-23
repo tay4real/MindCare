@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Link from "@material-ui/core/Link";
+import Link from "react-router-dom";
 import axios from "axios";
 
 class Register extends Component {
@@ -175,7 +175,7 @@ class Register extends Component {
                 </button>
 
                 <div className="col-sm text-center pt-2">
-                  <Link href="/signin" variant="body1">
+                  <Link to="/signin" variant="body1">
                     Already have an account? Sign in
                   </Link>
                 </div>
