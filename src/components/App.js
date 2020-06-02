@@ -1,44 +1,40 @@
-import React, { Component, Fragment } from './node_modules/react'
-import {Header, Footer} from './Layouts'
-import MentalTests from './MentalTests'
-import {mentalConditions, tests} from '../store.js'
+import React from "react";
+import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
+import PrivateRoute from "./Utils/PrivateRoute";
+import PublicRoute from "./Utils/PublicRoute";
+import Login from "./views/Login";
+import Dashboard from "./views/Dashboard";
+import Home from "./views/Home";
 
-
-export default class extends Component {
-
-  state = {
-    tests
-  }
-
-  getTestsByMentalConditions(){
-    return Object.entries(
-      this.state.tests.reduce((tests, test) => { 
-        const {mentalConditions} = test
-
-        tests[mentalConditions] = tests[mentalConditions]
-        ? [...test[mentalConditions], test]
-        : [test]
-
-        return tests
-      }, {})
-    )
-  }
-
-  render() {
-    const tests = this.getTestsByMentalConditions()
-    return (
-     
-      <Fragment>
-        <Header />
-
-        <MentalTests tests = {tests} />
-
-        <Footer 
-          mentalConditions = {mentalConditions}
-        />
-      </Fragment>
-    )
-  }
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <div>
+          <div className="header">
+            <NavLink exact activeClassName="active" to="/">
+              Home
+            </NavLink>
+            <NavLink activeClassName="active" to="/login">
+              Login
+            </NavLink>
+            <small>(Access without token only)</small>
+            <NavLink activeClassName="active" to="/dashboard">
+              Dashboard
+            </NavLink>
+            <small>(Access with token only)</small>
+          </div>
+          <div className="content">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <PublicRoute path="/login" component={Login} />
+              <PrivateRoute path="/dashboard" component={Dashboard} />
+            </Switch>
+          </div>
+        </div>
+      </BrowserRouter>
+    </div>
+  );
 }
 
-
+export default App;
