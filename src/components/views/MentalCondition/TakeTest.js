@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Helmet } from "react-helmet";
 import isEmpty from "../../../utils/is-empty";
 
 export default class TakeTest extends Component {
@@ -81,7 +81,9 @@ export default class TakeTest extends Component {
     const { condition } = this.props.location.category;
     return (
       <>
-       
+        <Helmet>
+          <title>Mind Care | Mental Test</title>
+        </Helmet>
         <div className="container" style={{ padding: "100px 16px" }}>
           <div className="col-md-9 mt-3 mb-3 mx-auto">
             <h1 className="h3  text-center font-weight-normal">
