@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 
@@ -18,6 +17,7 @@ import Login from "../views/Login";
 import Register from "../views/Register";
 import Dashboard from "../views/Dashboard";
 import TakeTest from "../views/MentalCondition/TakeTest";
+import Result from "../views/MentalCondition/Result";
 
 //var hist = createBrowserHistory();
 
@@ -58,7 +58,7 @@ export class Routes extends Component {
 
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
+          <Route path="/about" exact component={About} />
           <Route
             path="/categories"
             render={(props) => (
@@ -69,10 +69,11 @@ export class Routes extends Component {
               />
             )}
           />
-          <Route path="/mentaltest" component={TakeTest} />
-          <PublicRoute path="/signin" component={Login} />
-          <Route path="/signup" component={Register} />
-          <PrivateRoute path="/dashboard" component={Dashboard} />
+          <Route path="/mentaltest" exact component={TakeTest} />
+          <Route path="/result" exact component={Result} />
+          <PublicRoute path="/signin" exact component={Login} />
+          <Route path="/signup" exact component={Register} />
+          <PrivateRoute path="/dashboard" exact component={Dashboard} />
         </Switch>
 
         <Footer />
