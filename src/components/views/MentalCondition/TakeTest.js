@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import isEmpty from "../../../utils/is-empty";
+import { Link } from "react-router-dom";
 
 export default class TakeTest extends Component {
   constructor(props) {
@@ -152,46 +153,96 @@ export default class TakeTest extends Component {
       currentQuestionIndex,
     } = this.state;
     const { question, options } = currentQuestion;
+
+    let displayTest;
+    if (condition) {
+      if (question) {
+        displayTest = (
+          <>
+            <section className="col-md-9 mt-3 mb-3 mx-auto">
+              <h1 className="h3  text-center font-weight-normal">
+                {condition} Test
+              </h1>
+              {
+                <div className="questions">
+                  <div className="text-center">
+                    <p>
+                      <span>
+                        Question {currentQuestionIndex + 1} of{" "}
+                        {numberOfQuestions}
+                      </span>
+                    </p>
+                  </div>
+                  <h5>{question}</h5>
+                  <div className=" grid-container">
+                    {options && options.length > 0
+                      ? options.map((option) => {
+                          return (
+                            <div
+                              id={option.id}
+                              onClick={this.computeScore.bind(
+                                this,
+                                option.mark
+                              )}
+                              className="option"
+                              key={option.id}
+                            >
+                              {option.option}
+                            </div>
+                          );
+                        })
+                      : "Loading..."}
+                  </div>
+                </div>
+              }
+            </section>
+          </>
+        );
+      } else if (numberOfQuestions === 0) {
+        displayTest = (
+          <>
+            <section className="col-md-9 mt-3 mb-3 mx-auto">
+              <h1 className="h3  text-center font-weight-normal">
+                Sorry, {condition} Test is not Available Now
+              </h1>
+
+              <div className="take-test-container">
+                <p>
+                  <Link to="/categories" className="text-button">
+                    Take another Test
+                  </Link>
+                </p>
+              </div>
+            </section>
+          </>
+        );
+      }
+    } else {
+      displayTest = (
+        <>
+          <section className="col-md-9 mt-3 mb-3 mx-auto">
+            <h1 className="h3  text-center font-weight-normal">
+              No Test Available
+            </h1>
+
+            <div className="take-test-container">
+              <p>
+                <Link to="/categories" className="text-button">
+                  Take a Test
+                </Link>
+              </p>
+            </div>
+          </section>
+        </>
+      );
+    }
+
     return (
       <>
         <Helmet>
           <title>Mind Care | Mental Test</title>
         </Helmet>
-        <div className="container" style={{ padding: "100px 16px" }}>
-          <div className="col-md-9 mt-3 mb-3 mx-auto">
-            <h1 className="h3  text-center font-weight-normal">
-              {condition ? condition + " Test" : "No Test Available"}
-            </h1>
-            {
-              <div className="questions">
-                <div className="question-number-container">
-                  <p>
-                    <span className="left">
-                      {currentQuestionIndex + 1} of {numberOfQuestions}
-                    </span>
-                  </p>
-                </div>
-                <h5>{question}</h5>
-                <div className="options-container">
-                  {options && options.length > 0
-                    ? options.map((option) => {
-                        return (
-                          <p
-                            id={option.id}
-                            onClick={this.computeScore.bind(this, option.mark)}
-                            className="option"
-                            key={option.id}
-                          >
-                            {option.option}
-                          </p>
-                        );
-                      })
-                    : "Loading..."}
-                </div>
-              </div>
-            }
-          </div>
-        </div>
+        <div id="mentaltest">{displayTest}</div>
       </>
     );
   }

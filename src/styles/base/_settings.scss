@@ -1,11 +1,12 @@
 // Fonts
-$quicksand : 'Quicksand', sans-serif;
+$quicksand: "Quicksand", sans-serif;
 
 // colors
-$orange : #ffa500;
+$orange: #ffa500;
 $green: #57b846;
 $red: #ea4355;
 $blue: #1da1f2;
+$purple: purple;
 $off-black: #333;
 $off-white: #f8f8f8;
 $white: #ffffff;
@@ -16,8 +17,9 @@ $normal: 1rem;
 $sm: 1.5rem;
 $md: 2rem;
 $lg: 3rem;
-$xlg: 5rem;
-$xxlg: 7em;
+$xlg: 4rem;
+$xxlg: 5em;
+$xxxlg: 8em;
 
 //Button
 $button-radius: 30px;
@@ -29,5 +31,5 @@ $sm-breakpoint: 641px;
 $xs-breakpoint: 480px;
 
 //Shadow
-$shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-
+$shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12),
+  0 1px 5px 0 rgba(0, 0, 0, 0.2);

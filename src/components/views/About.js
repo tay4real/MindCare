@@ -8,9 +8,9 @@ export class About extends Component {
         <Helmet>
           <title>MindCare | About</title>
         </Helmet>
-        <div className="container" style={{ padding: "100px 16px" }}>
-          <div className="col-md-9 mt-3 mb-3 mx-auto">
-            <h1 className="h3  text-center font-weight-normal">
+        <div id="about" className="container" style={{ padding: "100px 16px" }}>
+          <div className=" col-md-9 mt-3 mb-3 mx-auto">
+            <h1 className="h3 text-center font-weight-normal">
               About MindCare
             </h1>
 

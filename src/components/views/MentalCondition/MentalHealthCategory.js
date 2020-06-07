@@ -26,7 +26,11 @@ export class MentalHealthCategory extends Component {
   render() {
     const { isLoading, mentalconditions } = this.props;
     return (
-      <div className="container" style={{ padding: "100px 16px" }}>
+      <div
+        id="categories"
+        className="container"
+        style={{ padding: "100px 16px" }}
+      >
         <div className="col-md-9 mt-3 mb-3 mx-auto">
           <h1 className="h3  text-center font-weight-normal">
             Select Test Type
@@ -37,7 +41,7 @@ export class MentalHealthCategory extends Component {
             diagnosis and treatment from a mental heath professional
           </p>
 
-          <div className="row" style={{}} align="center">
+          <div className="grid-container">
             {!isLoading ? (
               mentalconditions.map((mentalcondition) => {
                 const { condition, slug } = mentalcondition;
@@ -53,13 +57,8 @@ export class MentalHealthCategory extends Component {
                     key={slug}
                     style={{ textDecoration: "none", flex: "auto" }}
                   >
-                    <div
-                      className="card mb-2 mr-2 ml-2"
-                      style={{ minWidth: 400 }}
-                    >
-                      <div className="card-body text-center">
-                        <h5 className="card-title">{condition} Test</h5>
-                      </div>
+                    <div className="card">
+                      <h5>{condition} Test</h5>
                     </div>
                   </Link>
                 );

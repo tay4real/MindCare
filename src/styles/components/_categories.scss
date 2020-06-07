@@ -1,0 +1,83 @@
+#categories {
+  p {
+    font-size: large;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+  }
+
+  .grid-container .card {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+    align-content: center;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) and (orientation: portrait) {
+  #categories .grid-container {
+    grid-template-columns: auto;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) and (orientation: landscape) {
+  #categories .grid-container {
+    grid-template-columns: auto;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (orientation: portrait) {
+  #categories .grid-container {
+    grid-template-columns: auto;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (orientation: landscape) {
+  #categories .grid-container {
+    grid-template-columns: auto;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (orientation: portrait) {
+  #categories .grid-container {
+    grid-template-columns: auto;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (orientation: landscape) {
+  #categories .grid-container {
+    grid-template-columns: auto;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (orientation: portrait) {
+  #categories .grid-container {
+    grid-template-columns: auto auto;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  #categories .grid-container {
+    grid-template-columns: auto auto;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) and (orientation: landscape) {
+  #categories .grid-container {
+    grid-template-columns: auto auto;
+  }
+}
