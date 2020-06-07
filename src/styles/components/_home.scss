@@ -5,12 +5,393 @@
   min-height: 100vh;
   display: flex;
   justify-content: space-around;
+  align-content: space-evenly;
 
   section {
     background-color: rgba(0, 0, 0, 0.5);
     height: 80%;
     width: 50%;
-    padding-right: 2rem;
-    padding-left: 2rem;
+    padding-right: $md;
+    padding-left: $md;
+    padding-top: $xxlg;
+    padding-bottom: $xlg;
+    border-radius: 10px;
+  }
+
+  h1 {
+    text-align: center;
+    color: $off-white;
+    font-size: $xxlg;
+  }
+
+  .take-test-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  a.text-button {
+    background-color: $blue;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: large;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  a.text-button:hover {
+    background-color: darken($blue, 10%);
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) and (orientation: portrait) {
+  #home section {
+    padding-right: $xs;
+    padding-left: $xs;
+    padding-top: $xxxlg;
+    padding-bottom: $lg;
+    width: 80vw;
+    height: 80vh;
+  }
+
+  #home h1 {
+    text-align: center;
+    color: $off-white;
+    font-size: $md;
+  }
+
+  #home a.text-button {
+    background-color: $blue;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: $normal;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.text-button:hover {
+    background-color: darken($blue, 10%);
+  }
+
+  #home .take-test-container {
+    padding-top: 20vh;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) and (orientation: landscape) {
+  #home section {
+    padding-right: $xs;
+    padding-left: $xs;
+    padding-top: $xlg;
+    padding-bottom: $lg;
+    width: 70vw;
+    height: 80vh;
+  }
+
+  #home h1 {
+    text-align: center;
+    color: $off-white;
+    font-size: $md;
+  }
+
+  #home a.text-button {
+    background-color: $blue;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $xs $normal;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: $normal;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.text-button:hover {
+    background-color: darken($blue, 10%);
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (orientation: portrait) {
+  #home section {
+    padding-right: $xs;
+    padding-left: $xs;
+    padding-top: $xxxlg;
+    padding-bottom: $xlg;
+    width: 70vw;
+    height: 80vh;
+  }
+
+  #home h1 {
+    text-align: center;
+    color: $off-white;
+    font-size: $xxlg;
+  }
+
+  #home a.text-button {
+    background-color: $blue;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: xx-large;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.text-button:hover {
+    background-color: darken($blue, 10%);
+  }
+
+  #home .take-test-container {
+    padding-top: 20vh;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (orientation: landscape) {
+  #home section {
+    padding-right: $normal;
+    padding-left: $normal;
+    padding-top: $xxxlg;
+    padding-bottom: $xlg;
+    width: 70vw;
+    height: 80vh;
+  }
+
+  #home h1 {
+    text-align: center;
+    color: $off-white;
+    font-size: $md;
+  }
+
+  #home a.text-button {
+    background-color: $blue;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: $normal;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.text-button:hover {
+    background-color: darken($blue, 10%);
+  }
+  #home .take-test-container {
+    padding-top: 5vh;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (orientation: portrait) {
+  #home section {
+    padding-right: $xs;
+    padding-left: $xs;
+    padding-top: $xxxlg;
+    padding-bottom: $xlg;
+    width: 70vw;
+    height: 80vh;
+  }
+
+  #home h1 {
+    text-align: center;
+    color: $off-white;
+    font-size: $xxlg;
+  }
+
+  #home a.text-button {
+    background-color: $blue;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: xx-large;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.text-button:hover {
+    background-color: darken($blue, 10%);
+  }
+
+  #home .take-test-container {
+    padding-top: 30vh;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (orientation: landscape) {
+  #home section {
+    padding-right: $normal;
+    padding-left: $normal;
+    padding-top: $xxxlg;
+    padding-bottom: $xlg;
+    width: 70vw;
+    height: 80vh;
+  }
+
+  #home h1 {
+    text-align: center;
+    color: $off-white;
+    font-size: $md;
+  }
+
+  #home .take-test-container {
+    padding-top: 5vh;
+  }
+
+  #home a.text-button {
+    background-color: $blue;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: $normal;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.text-button:hover {
+    background-color: darken($blue, 10%);
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (orientation: portrait) {
+  #home section {
+    padding-right: $lg;
+    padding-left: $lg;
+    padding-top: $xxxlg;
+    padding-bottom: $xlg;
+    width: 80vw;
+    height: 80vh;
+  }
+
+  #home h1 {
+    text-align: center;
+    color: $off-white;
+    font-size: $xxxlg;
+  }
+
+  #home .take-test-container {
+    padding-top: 30vh;
+  }
+
+  #home a.text-button {
+    background-color: $blue;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: xxx-large;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.text-button:hover {
+    background-color: darken($blue, 10%);
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  #home section {
+    padding-right: $normal;
+    padding-left: $normal;
+    padding-top: $xxxlg;
+    padding-bottom: $xlg;
+    width: 70vw;
+    height: 80vh;
+  }
+
+  #home h1 {
+    text-align: center;
+    color: $off-white;
+    font-size: $xxlg;
+  }
+
+  #home .take-test-container {
+    padding-top: 30vh;
+  }
+
+  #home a.text-button {
+    background-color: $blue;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: xx-large;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.text-button:hover {
+    background-color: darken($blue, 10%);
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) and (orientation: landscape) {
+  #home section {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 65vh;
+    width: 50vw;
+    padding-right: $md;
+    padding-left: $md;
+    padding-top: $xxxlg;
+    padding-bottom: $xlg;
+    border-radius: 10px;
+  }
+
+  #home h1 {
+    text-align: center;
+    color: $off-white;
+    font-size: $xxlg;
+  }
+
+  #home .take-test-container {
+    padding-top: $normal;
+  }
+
+  #home a.text-button {
+    background-color: $blue;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: large;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.text-button:hover {
+    background-color: darken($blue, 10%);
   }
 }
