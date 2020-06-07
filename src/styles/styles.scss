@@ -1,4 +1,8 @@
-@import "./base/base";
 @import "./base/settings";
+@import "./base/base";
+@import "./components/navbar";
 @import "./components/home";
-@import "./components/test";
+@import "./components/about";
+@import "./components/categories";
+@import "./components/mentaltest";
+@import "./components/footer";
