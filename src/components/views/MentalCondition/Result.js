@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 export class Result extends Component {
   constructor(props) {
@@ -35,32 +36,56 @@ export class Result extends Component {
     let stats;
     if (state !== undefined) {
       stats = (
-        <div className="container" style={{ padding: "100px 16px" }}>
-          <div className="col-md-9 mt-3 mb-3 mx-auto">
+        <>
+          <section className="col-md-9 mt-3 mb-3 mx-auto">
             <h1 className="h3  text-center font-weight-normal">
-              Result: {this.state.level} of {this.state.condition}
+              {this.state.condition} Test Result
             </h1>
-
-            <p className="text-center">{this.state.recommendation}</p>
-
-            <div className="row" style={{}} align="center">
-              <div className="card mb-2 mr-2 ml-2" style={{ minWidth: 400 }}>
-                <div className="card-body text-center">
-                  <h5 className="card-title">
-                    Your total score was {this.state.score} out of{" "}
-                    {this.state.totalAssignedScore}
-                  </h5>
+            {
+              <div className="questions">
+                <div className="text-center">
+                  <p>
+                    <span>
+                      Your total score was {this.state.score} out of{" "}
+                      {this.state.totalAssignedScore}
+                    </span>
+                  </p>
+                </div>
+                <h5>{this.state.recommendation}</h5>
+                <div className=" grid-container">
+                  <div>
+                    <Link to="/categories" className="take-test">
+                      Take another Test
+                    </Link>
+                  </div>
+                  <div>
+                    <Link to="/" className="exit">
+                      Exit
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+            }
+          </section>
+        </>
       );
     } else {
       stats = (
-        <h1 style={{ paddingTop: 100 }}>
-          No Stats available. Please take a quiz.
-        </h1>
+        <>
+          <section className="col-md-9 mt-3 mb-3 mx-auto">
+            <h1 className="h3  text-center font-weight-normal">
+              Sorry, You did not take a test
+            </h1>
+
+            <div className="take-test-container">
+              <p>
+                <Link to="/categories" className="text-button">
+                  Take a Test
+                </Link>
+              </p>
+            </div>
+          </section>
+        </>
       );
     }
     return (
@@ -68,7 +93,7 @@ export class Result extends Component {
         <Helmet>
           <title>MindCare | Mental Test Result</title>
         </Helmet>
-        {stats}
+        <div id="result">{stats}</div>
       </>
     );
   }
