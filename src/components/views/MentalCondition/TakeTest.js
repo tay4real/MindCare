@@ -111,7 +111,7 @@ export default class TakeTest extends Component {
   };
 
   displayResults = () => {
-    alert("test has ended");
+    alert("You have come to the end of the test. Click Ok to view your result.");
     const { state } = this;
     const percentage_level =
       (this.state.score / this.state.totalAssignedScore) * 100;
