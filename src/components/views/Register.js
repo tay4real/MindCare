@@ -52,7 +52,7 @@ class Register extends Component {
         email: "",
         password: "",
         re_password: "",
-        address:"",
+        address: "",
       },
     };
 
@@ -109,7 +109,7 @@ class Register extends Component {
         dob: this.state.dob,
         state: this.state.state,
         lga: this.state.lga,
-        address: this.state.lga
+        address: this.state.lga,
       };
 
       axios
@@ -229,7 +229,7 @@ class Register extends Component {
                   )}
                 </div>
                 <div className="form-group">
-                  <label htmlFor="email">Phone Number</label>
+                  <label htmlFor="phone_number">Phone Number</label>
                   <input
                     type="text"
                     className="form-control"
@@ -240,9 +240,9 @@ class Register extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="email">Date of Birth</label>
+                  <label htmlFor="dob">Date of Birth</label>
                   <input
-                    type="text"
+                    type="date"
                     className="form-control"
                     name="dob"
                     placeholder="Enter Date of Birth"
@@ -251,7 +251,7 @@ class Register extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="email">State</label>
+                  <label htmlFor="state">State</label>
                   <input
                     type="text"
                     className="form-control"
@@ -262,7 +262,7 @@ class Register extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="email">LGA</label>
+                  <label htmlFor="lga">LGA</label>
                   <input
                     type="text"
                     className="form-control"
