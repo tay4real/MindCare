@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
-import PrivateRoute from "./PrivateRoute";
-import PublicRoute from "./PublicRoute";
+import { getToken, removeUserSession } from "../Utils/Common";
 
 // available on all pages
 import TopNavBar from "../views/TopNavBar";
@@ -26,6 +24,7 @@ export class Routes extends Component {
     showSidebar: false,
     mentalconditions: [],
     isLoading: true,
+    loggedIn: false,
     errors: null,
   };
 
@@ -40,6 +39,27 @@ export class Routes extends Component {
     });
   }
 
+  handleLogout = () => {
+    removeUserSession();
+    this.setState({
+      loggedIn: false,
+    });
+  };
+
+  LoginToggle = () => {
+    this.setState((prevState) => {
+      return { loggedIn: !prevState.loggedIn };
+    });
+  };
+  handleLogin = () => {
+    const token = getToken();
+    if (token && token !== null) {
+      this.setState({
+        loggedIn: true,
+      });
+    }
+  };
+
   closeSidebar = () => {
     this.setState({ showSidebar: false });
   };
@@ -53,8 +73,19 @@ export class Routes extends Component {
   render() {
     return (
       <BrowserRouter>
-        <TopNavBar toggleSidebar={this.SidebarToggle} />
-        <SideNavBar closed={this.SidebarToggle} show={this.state.showSidebar} />
+        <TopNavBar
+          toggleSidebar={this.SidebarToggle}
+          handleLogin={this.handleLogin}
+          handleLogout={this.handleLogout}
+          loggedIn={this.state.loggedIn}
+        />
+        <SideNavBar
+          closed={this.SidebarToggle}
+          show={this.state.showSidebar}
+          handleLogin={this.handleLogin}
+          handleLogout={this.handleLogout}
+          loggedIn={this.state.loggedIn}
+        />
 
         <Switch>
           <Route exact path="/" component={Home} />
@@ -69,11 +100,27 @@ export class Routes extends Component {
               />
             )}
           />
-          <Route path="/mentaltest" exact component={TakeTest} />
+
+          <Route
+            path="/mentaltest"
+            render={(props) => (
+              <TakeTest {...props} loggedIn={this.state.loggedIn} />
+            )}
+          />
           <Route path="/result" exact component={Result} />
-          <PublicRoute path="/signin" exact component={Login} />
+          <Route
+            path="/signin"
+            render={(props) => (
+              <Login
+                {...props}
+                LoginToggle={this.LoginToggle}
+                loggedIn={this.state.loggedIn}
+              />
+            )}
+          />
+
           <Route path="/signup" exact component={Register} />
-          <PrivateRoute path="/dashboard" exact component={Dashboard} />
+          <Route path="/dashboard" exact component={Dashboard} />
         </Switch>
 
         <Footer />

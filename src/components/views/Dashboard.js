@@ -1,22 +1,46 @@
-import React from "react";
-//import { getUser, removeUserSession } from "../Utils/Common";
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import Agreement from "./MentalCondition/Agreement";
 
-function Dashboard(props) {
-  //const user = getUser();
-
-  // handle click event of logout button
-  const handleLogout = () => {
-    //removeUserSession();
-    props.history.push("/signin");
+export class Dashboard extends Component {
+  state = {
+    showModal: false,
   };
+  closeModal = () => {
+    this.setState({ showModal: false });
+  };
+  ModalToggle = () => {
+    this.setState((prevState) => {
+      return { showModal: !prevState.showModal };
+    });
+  };
+  openModal = () => {
+    this.setState({ showModal: true });
+  };
+  render() {
+    return (
+      <>
+        <Helmet>
+          <title>MindCare | User Dashboard</title>
+        </Helmet>
+        <header id="home">
+          <section className="text-white">
+            <h1>Know Your Mental Health Status</h1>
 
-  return (
-    <div>
-      Welcome !<br />
-      <br />
-      <input type="button" onClick={handleLogout} value="Logout" />
-    </div>
-  );
+            <div className="take-test-container">
+              <Agreement close={this.ModalToggle} show={this.state.showModal} />
+              <p>
+                <Link to="/" onClick={this.openModal} className="text-button">
+                  Take a Test
+                </Link>
+              </p>
+            </div>
+          </section>
+        </header>
+      </>
+    );
+  }
 }
 
 export default Dashboard;

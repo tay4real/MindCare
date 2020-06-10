@@ -1,8 +1,23 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import Agreement from "./MentalCondition/Agreement";
 
 export class Home extends Component {
+  state = {
+    showModal: false,
+  };
+  closeModal = () => {
+    this.setState({ showModal: false });
+  };
+  ModalToggle = () => {
+    this.setState((prevState) => {
+      return { showModal: !prevState.showModal };
+    });
+  };
+  openModal = () => {
+    this.setState({ showModal: true });
+  };
   render() {
     return (
       <>
@@ -14,11 +29,9 @@ export class Home extends Component {
             <h1>Know Your Mental Health Status</h1>
 
             <div className="take-test-container">
+              <Agreement close={this.ModalToggle} show={this.state.showModal} />
               <p>
-                <Link
-                  to="/categories"
-                  className="text-button"
-                >
+                <Link to="/" onClick={this.openModal} className="text-button">
                   Take a Test
                 </Link>
               </p>
