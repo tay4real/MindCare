@@ -37,6 +37,10 @@ class Register extends Component {
       first_name: "",
       last_name: "",
       email: "",
+      phone_number: "",
+      dob: "",
+      state: "",
+      lga: "",
       password: "",
       re_password: "",
       errors: [],
@@ -48,6 +52,7 @@ class Register extends Component {
         email: "",
         password: "",
         re_password: "",
+        address:"",
       },
     };
 
@@ -100,6 +105,11 @@ class Register extends Component {
         email: this.state.email,
         password: this.state.password,
         re_password: this.state.re_password,
+        phone_number: this.state.phone_number,
+        dob: this.state.dob,
+        state: this.state.state,
+        lga: this.state.lga,
+        address: this.state.lga
       };
 
       axios
@@ -127,7 +137,6 @@ class Register extends Component {
     }
   }
 
-  
   renderError(message) {
     if (!message) return null;
     else {
@@ -151,7 +160,7 @@ class Register extends Component {
 
   render() {
     const { formErrors } = this.state;
-    const {email} = this.state;
+    const { email } = this.state;
     return (
       <div className="container" style={{ padding: "100px 16px" }}>
         <div className="row card">
@@ -171,43 +180,38 @@ class Register extends Component {
 
             <form noValidate onSubmit={this.onSubmit}>
               <div className="card-body">
-                <div className="row">
-                  <div className="col col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="first_name">First Name</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="first_name"
-                        placeholder="Enter First Name"
-                        value={this.state.first_name}
-                        onChange={this.onChange}
-                      />
-                      {formErrors.first_name.length > 0 && (
-                        <span style={styles.errorMessage}>
-                          {formErrors.first_name}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="col col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="last_name">Last Name</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="last_name"
-                        placeholder="Enter Last Name"
-                        value={this.state.last_name}
-                        onChange={this.onChange}
-                      />
-                      {formErrors.last_name.length > 0 && (
-                        <span style={styles.errorMessage}>
-                          {formErrors.last_name}
-                        </span>
-                      )}
-                    </div>
-                  </div>
+                <div className="form-group">
+                  <label htmlFor="first_name">First Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="first_name"
+                    placeholder="Enter First Name"
+                    value={this.state.first_name}
+                    onChange={this.onChange}
+                  />
+                  {formErrors.first_name.length > 0 && (
+                    <span style={styles.errorMessage}>
+                      {formErrors.first_name}
+                    </span>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="last_name">Last Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="last_name"
+                    placeholder="Enter Last Name"
+                    value={this.state.last_name}
+                    onChange={this.onChange}
+                  />
+                  {formErrors.last_name.length > 0 && (
+                    <span style={styles.errorMessage}>
+                      {formErrors.last_name}
+                    </span>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -224,44 +228,82 @@ class Register extends Component {
                     <span style={styles.errorMessage}>{formErrors.email}</span>
                   )}
                 </div>
+                <div className="form-group">
+                  <label htmlFor="email">Phone Number</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="phone_number"
+                    placeholder="Enter Phone Number"
+                    value={this.state.phone_number}
+                    onChange={this.onChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Date of Birth</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="dob"
+                    placeholder="Enter Date of Birth"
+                    value={this.state.dob}
+                    onChange={this.onChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">State</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="state"
+                    placeholder="Enter Your State"
+                    value={this.state.state}
+                    onChange={this.onChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">LGA</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="lga"
+                    placeholder="Enter Your LGA"
+                    value={this.state.lga}
+                    onChange={this.onChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    name="password"
+                    placeholder="Enter Password"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                  />
+                  {formErrors.password.length > 0 && (
+                    <span style={styles.errorMessage}>
+                      {formErrors.password}
+                    </span>
+                  )}
+                </div>
 
-                <div className="row">
-                  <div className="col">
-                    <div className="form-group">
-                      <label htmlFor="password">Password</label>
-                      <input
-                        type="password"
-                        className="form-control"
-                        name="password"
-                        placeholder="Enter Password"
-                        value={this.state.password}
-                        onChange={this.onChange}
-                      />
-                      {formErrors.password.length > 0 && (
-                        <span style={styles.errorMessage}>
-                          {formErrors.password}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="form-group">
-                      <label htmlFor="re_password">Confirm Password</label>
-                      <input
-                        type="password"
-                        className="form-control"
-                        name="re_password"
-                        placeholder="Re-Enter Password"
-                        value={this.state.re_password}
-                        onChange={this.onChange}
-                      />
-                      {formErrors.re_password.length > 0 && (
-                        <span style={styles.errorMessage}>
-                          {formErrors.re_password}
-                        </span>
-                      )}
-                    </div>
-                  </div>
+                <div className="form-group">
+                  <label htmlFor="re_password">Confirm Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    name="re_password"
+                    placeholder="Re-Enter Password"
+                    value={this.state.re_password}
+                    onChange={this.onChange}
+                  />
+                  {formErrors.re_password.length > 0 && (
+                    <span style={styles.errorMessage}>
+                      {formErrors.re_password}
+                    </span>
+                  )}
                 </div>
               </div>
               <div className="card-footer bg-transparent border-primary">

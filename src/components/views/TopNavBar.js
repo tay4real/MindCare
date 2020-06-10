@@ -3,6 +3,12 @@ import { NavLink } from "react-router-dom";
 import mindCareLogo from "../../assets/images/mindcare_logo.jpg";
 
 export class TopNavBar extends Component {
+  
+
+  componentDidMount() {
+    const { handleLogin } = this.props;
+    handleLogin();
+  }
   render() {
     return (
       <div className="w3-top">
@@ -39,9 +45,18 @@ export class TopNavBar extends Component {
             </NavLink>
             <NavLink
               activeClassName="active"
-              to="/signup"
+              to="/findhelp"
               className="w3-bar-item w3-button"
               style={{ textDecoration: "none" }}
+            >
+              FIND HELP
+            </NavLink>
+
+            <NavLink
+              activeClassName="active"
+              to="/signup"
+              className="w3-bar-item w3-button"
+              style={{ display: this.props.loggedIn ? "none" : "block" }}
             >
               SIGN UP
             </NavLink>
@@ -49,12 +64,20 @@ export class TopNavBar extends Component {
               activeClassName="active"
               to="/signin"
               className="w3-bar-item w3-button"
-              style={{ textDecoration: "none" }}
+              style={{ display: this.props.loggedIn ? "none" : "block" }}
             >
               SIGN IN
             </NavLink>
+            <NavLink
+              activeClassName="active"
+              to="/"
+              onClick={this.props.handleLogout}
+              className="w3-bar-item w3-button"
+              style={{ display: this.props.loggedIn ? "block" : "none" }}
+            >
+              LOGOUT
+            </NavLink>
           </div>
-
           <NavLink
             activeClassName="active"
             to="#"
