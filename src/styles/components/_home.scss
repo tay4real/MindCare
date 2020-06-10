@@ -18,12 +18,17 @@
     border-radius: 10px;
   }
 
+  
+
   h1 {
     text-align: center;
     color: $off-white;
     font-size: $xxlg;
   }
 
+  .line-height {
+    line-height: $md;
+  }
   .take-test-container {
     width: 100%;
     display: flex;
