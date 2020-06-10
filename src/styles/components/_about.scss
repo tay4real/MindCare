@@ -1,5 +1,10 @@
 #about {
+  h1 {
+    margin-bottom: $md;
+  }
   p {
     font-size: large;
+    text-align: justify;
+    line-height: 1.5em;
   }
 }

@@ -1,0 +1,22 @@
+.findhelp-container {
+  background-color: $off-white;
+  border-radius: $button-radius;
+  display: block;
+  width: 40%;
+  padding: $xs;
+}
+.findhelp {
+  width: 90%;
+  font-size: $sm;
+  transition: 0.3s linear all;
+}
+
+a.findhelp {
+  text-decoration: none;
+  color: black;
+}
+
+a.findhelp:hover {
+  text-decoration: none;
+  color: black;
+}
