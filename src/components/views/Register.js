@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+
 const styles = {
   errorMessage: {
     color: "red",
@@ -39,6 +40,8 @@ class Register extends Component {
       email: "",
       phone_number: "",
       dob: "",
+      states: [],
+      lgas: [],
       state: "",
       lga: "",
       password: "",
@@ -60,8 +63,37 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  async componentDidMount() {
+    const url = "https://evening-mesa-59655.herokuapp.com/api/states";
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({
+      states: data.data,
+    });
+    
+    console.log(this.state.states)
+
+  }
+
+  async componentDidUpdate() {
+    const { state } = this.state;
+
+    if (state !== "") {
+      const url =
+        "https://evening-mesa-59655.herokuapp.com/api/states/" +
+        state +
+        "/lgas";
+      const response = await fetch(url);
+      const data = await response.json();
+      this.setState({
+        lgas: data.data,
+      });
+      
+    }
+  }
   onChange(e) {
     e.preventDefault();
+
     const { name, value } = e.target;
     let formErrors = { ...this.state.formErrors };
 
@@ -91,9 +123,7 @@ class Register extends Component {
         break;
     }
 
-    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
-
-    //this.setState({ [e.target.name]: e.target.value });
+    this.setState({ formErrors, [name]: value });
   }
 
   onSubmit(e) {
@@ -109,7 +139,7 @@ class Register extends Component {
         dob: this.state.dob,
         state: this.state.state,
         lga: this.state.lga,
-        address: this.state.lga,
+        address: this.state.address,
       };
 
       axios
@@ -159,6 +189,30 @@ class Register extends Component {
   }
 
   render() {
+    const { states } = this.state;
+    let stateList;
+    if (states !== undefined) {
+      stateList = states.map((state) => {
+        const { id, name } = state;
+        return (
+          <option key={id} value={id}>
+            {name}
+          </option>
+        );
+      });
+    }
+    const { lgas } = this.state;
+    let lgaList;
+    if (lgas !== undefined) {
+      lgaList = lgas.map((lga) => {
+        const { id, name } = lga;
+        return (
+          <option key={id} value={id}>
+            {name}
+          </option>
+        );
+      });
+    }
     const { formErrors } = this.state;
     const { email } = this.state;
     return (
@@ -215,6 +269,63 @@ class Register extends Component {
                 </div>
 
                 <div className="form-group">
+                  <label htmlFor="dob">Date of Birth</label>
+                  <input
+                    type="date"
+                    className="form-control"
+                    name="dob"
+                    placeholder="Enter Date of Birth"
+                    value={this.state.dob}
+                    onChange={this.onChange}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="phone_number">Phone Number</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="phone_number"
+                    placeholder="Enter Phone Number"
+                    value={this.state.phone_number}
+                    onChange={this.onChange}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="email">Address</label>
+                  <textarea
+                    className="form-control"
+                    placeholder="Enter your Address"
+                    name="address"
+                    value={this.state.address}
+                    onChange={this.onChange}
+                  ></textarea>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="state">State</label>
+                  <select
+                    className="custom-select"
+                    onChange={this.onChange}
+                    name="state"
+                  >
+                    <option>Choose your State</option>
+                    {stateList}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="state">LGA</label>
+                  <select
+                    className="custom-select"
+                    onChange={this.onChange}
+                    name="lga"
+                  >
+                    <option>Choose your LGA</option>
+                    {lgaList}
+                  </select>
+                </div>
+
+                <div className="form-group">
                   <label htmlFor="email">Email Address</label>
                   <input
                     type="email"
@@ -228,50 +339,7 @@ class Register extends Component {
                     <span style={styles.errorMessage}>{formErrors.email}</span>
                   )}
                 </div>
-                <div className="form-group">
-                  <label htmlFor="phone_number">Phone Number</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="phone_number"
-                    placeholder="Enter Phone Number"
-                    value={this.state.phone_number}
-                    onChange={this.onChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="dob">Date of Birth</label>
-                  <input
-                    type="date"
-                    className="form-control"
-                    name="dob"
-                    placeholder="Enter Date of Birth"
-                    value={this.state.dob}
-                    onChange={this.onChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="state">State</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="state"
-                    placeholder="Enter Your State"
-                    value={this.state.state}
-                    onChange={this.onChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="lga">LGA</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="lga"
-                    placeholder="Enter Your LGA"
-                    value={this.state.lga}
-                    onChange={this.onChange}
-                  />
-                </div>
+
                 <div className="form-group">
                   <label htmlFor="password">Password</label>
                   <input
@@ -279,6 +347,7 @@ class Register extends Component {
                     className="form-control"
                     name="password"
                     placeholder="Enter Password"
+                    autoComplete="off"
                     value={this.state.password}
                     onChange={this.onChange}
                   />
@@ -296,6 +365,7 @@ class Register extends Component {
                     className="form-control"
                     name="re_password"
                     placeholder="Re-Enter Password"
+                    autoComplete="off"
                     value={this.state.re_password}
                     onChange={this.onChange}
                   />
