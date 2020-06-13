@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-
 const styles = {
   errorMessage: {
     color: "red",
@@ -32,6 +31,8 @@ const formValid = ({ formErrors, ...rest }) => {
 };
 
 class Register extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -47,7 +48,7 @@ class Register extends Component {
       password: "",
       re_password: "",
       errors: [],
-      success: "",
+      success: false,
       displayErrors: false,
       formErrors: {
         first_name: "",
@@ -64,17 +65,21 @@ class Register extends Component {
   }
 
   async componentDidMount() {
+    this._isMounted = true;
+
     const url = "https://evening-mesa-59655.herokuapp.com/api/states";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({
       states: data.data,
     });
-    
-    console.log(this.state.states)
 
+    console.log(this.state.states);
   }
 
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
   async componentDidUpdate() {
     const { state } = this.state;
 
@@ -88,7 +93,6 @@ class Register extends Component {
       this.setState({
         lgas: data.data,
       });
-      
     }
   }
   onChange(e) {
@@ -145,11 +149,9 @@ class Register extends Component {
       axios
         .post("https://evening-mesa-59655.herokuapp.com/api/register", newUser)
         .then((newUser) => {
-          console.log(newUser);
           this.setState({
-            success: "You have succesfully Registered. Sign in to Continue",
+            success: true,
             displayErrors: false,
-            errors: [],
           });
         })
         .catch((err) => {
@@ -158,7 +160,7 @@ class Register extends Component {
             this.setState({
               errors: err.response.data.errors,
               displayErrors: true,
-              success: "",
+              success: false,
             });
           }
         });
@@ -215,18 +217,33 @@ class Register extends Component {
     }
     const { formErrors } = this.state;
     const { email } = this.state;
+
     return (
-      <div className="container" style={{ padding: "100px 16px" }}>
+      <div
+        id="register"
+        className="container"
+        style={{ padding: "100px 16px" }}
+      >
         <div className="row card">
-          <div className="col-md-6 mt-5 mb-5 mx-auto">
+          <div
+            className=".col-6	.col-sm-6	.col-lg-6	.col-xl-6 col-md-8 mt-5 mb-5 mx-auto"
+            style={{ display: this.state.success ? "block" : "none" }}
+          >
+            <div className="card-header bg-transparent border-primary">
+              <h5>
+                Thank you for registering on our platform. An email has been
+                sent to you. Please verify your email to complete your
+                registration.
+              </h5>
+            </div>
+          </div>
+          <div
+            className=".col-6	.col-sm-6	.col-lg-6	.col-xl-6 col-md-8 mt-5 mb-5 mx-auto"
+            style={{ display: this.state.success ? "none" : "block" }}
+          >
             <div className="card-header bg-transparent border-primary">
               <h1 className="h3  text-center font-weight-normal">Register</h1>
-              <div
-                className="p-3 mb-2 bg-success text-white text-center"
-                style={{ display: this.state.success ? "block" : "none" }}
-              >
-                {this.state.success}
-              </div>
+
               {this.state.displayErrors
                 ? this.renderError(this.state.errors)
                 : ""}
