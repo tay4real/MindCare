@@ -76,6 +76,7 @@ class Login extends Component {
   }
 
   render() {
+    const { email, password } = this.state;
     if (this.props.loggedIn) {
       return <Redirect to="/dashboard" />;
     }
@@ -111,12 +112,25 @@ class Login extends Component {
                   onChange={this.onChange}
                 />
               </div>
-              <button
-                type="submit"
-                className="btn btn-lg btn-primary btn-block"
-              >
-                Sign In
-              </button>
+
+              <div className="bg-transparent border-primary">
+                {email.length > 0 && password.length > 0 ? (
+                  <button
+                    type="submit"
+                    className="btn btn-lg btn-primary btn-block"
+                  >
+                    Sign In
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className="btn btn-lg btn-primary btn-block"
+                    disabled
+                  >
+                    Sign In
+                  </button>
+                )}
+              </div>
             </form>
           </div>
         </div>

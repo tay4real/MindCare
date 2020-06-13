@@ -241,8 +241,10 @@ class Register extends Component {
             className=".col-6	.col-sm-6	.col-lg-6	.col-xl-6 col-md-8 mt-5 mb-5 mx-auto"
             style={{ display: this.state.success ? "none" : "block" }}
           >
-            <div className="card-header bg-transparent border-primary">
-              <h1 className="h3  text-center font-weight-normal">Register</h1>
+            <div className=" bg-transparent border-primary">
+              <h1 className="h3  text-center mb-3 font-weight-normal">
+                Register
+              </h1>
 
               {this.state.displayErrors
                 ? this.renderError(this.state.errors)
@@ -308,6 +310,20 @@ class Register extends Component {
                     onChange={this.onChange}
                   />
                 </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email Address</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    name="email"
+                    placeholder="Enter Email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                  />
+                  {formErrors.email.length > 0 && (
+                    <span style={styles.errorMessage}>{formErrors.email}</span>
+                  )}
+                </div>
 
                 <div className="form-group">
                   <label htmlFor="email">Address</label>
@@ -340,21 +356,6 @@ class Register extends Component {
                     <option>Choose your LGA</option>
                     {lgaList}
                   </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="email">Email Address</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    name="email"
-                    placeholder="Enter Email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                  />
-                  {formErrors.email.length > 0 && (
-                    <span style={styles.errorMessage}>{formErrors.email}</span>
-                  )}
                 </div>
 
                 <div className="form-group">
@@ -393,7 +394,7 @@ class Register extends Component {
                   )}
                 </div>
               </div>
-              <div className="card-footer bg-transparent border-primary">
+              <div className=" bg-transparent border-primary">
                 {email.length > 0 ? (
                   <button
                     type="submit"
