@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { getUserProfile } from "../../Utils/Common";
 
 export class Result extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      condition: "",
-      score: 0,
-      numberOfQuestions: 0,
-      totalAssignedScore: 0,
-      percentageScore: 0,
-      level: "",
-      recommendation: "",
+      result: [],
+      loggedIn: false,
       showModal: true,
+      profile: "",
     };
   }
   componentDidMount() {
@@ -21,16 +18,20 @@ export class Result extends Component {
 
     if (state) {
       this.setState({
-        condition: state.condition,
-        score: state.score,
-        numberOfQuestions: state.numberOfQuestions,
-        totalAssignedScore: state.totalAssignedScore,
-        percentageScore: state.percentageScore,
-        level: state.level,
-        recommendation: state.recommendation,
+        result: state.result,
         loggedIn: state.loggedIn,
       });
     }
+
+    getUserProfile()
+      .then((res) => {
+        this.setState({
+          profile: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   closeModal = () => {
@@ -47,7 +48,14 @@ export class Result extends Component {
 
   render() {
     const { state } = this.props.location;
-    console.log(this.state.loggedIn);
+    const { name } = this.state.profile;
+
+    const {
+      mental_condition,
+      possible_ailment,
+      scored_point,
+    } = this.state.result;
+    console.log(state);
     let stats;
 
     if (state !== undefined) {
@@ -56,29 +64,33 @@ export class Result extends Component {
           <>
             <section className="col-md-9 mt-3 mb-3 mx-auto">
               <h1 className="h3  text-center font-weight-normal">
-                Your {this.state.condition} Test Result
+                Test Result
               </h1>
 
               {
                 <div className="questions">
-                  <h5 className="text-bold">
-                    <span>YOUR RESULT IS </span>
-                    {this.state.level + " " + this.state.condition}
-                  </h5>
-                  <h5>{this.state.recommendation}</h5>
-                  <div className="text-center">
-                    <h5 className="text-bold">
-                      Your Score: {this.state.score}
-                    </h5>
+                  <div className="text-justify text-center">
+                    <h5>Hi! {name}</h5>
+                    <br />
+                    <p>Thank you for taking the test on mindcare</p>
+                    <p>Here is the summary of your test result</p>
+                    <p>Name of </p>
+                    <p>Your Score Point is {scored_point}.</p>
+                    <p>
+                      Your result shows that {possible_ailment.toLowerCase()}
+                    </p>
+                    <p>
+                      <small>
+                        Note: This is only a summary of your test result. We
+                        have sent a detailed result to your email. Thanks for
+                        using MindCare{" "}
+                      </small>
+                    </p>
                   </div>
                   <div className=" grid-container">
+                    <div></div>
                     <div>
-                      <Link to="/categories" className="email-result">
-                        EMAIL RESULT
-                      </Link>
-                    </div>
-                    <div>
-                      <Link to="/" className="take-test">
+                      <Link to="/categories" className="take-test">
                         GO BACK TO TEST
                       </Link>
                     </div>
@@ -96,7 +108,7 @@ export class Result extends Component {
                 Please Login or Register to view your Result
               </h1>
 
-              <div className="take-test-container">
+              <div className="grid-container">
                 <p>
                   <Link to="/signin" className="text-button">
                     Login
@@ -121,7 +133,7 @@ export class Result extends Component {
               Sorry, You did not take a test
             </h1>
 
-            <div className="take-test-container">
+            <div className="grid-container">
               <p>
                 <Link to="/categories" className="text-button">
                   Take a Test

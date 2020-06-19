@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import isEmpty from "../../../utils/is-empty";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { getToken } from "../../Utils/Common";
 
 export default class TakeTest extends Component {
   constructor(props) {
@@ -11,15 +13,16 @@ export default class TakeTest extends Component {
       condition: "",
       id: "",
       questions: [],
+      answers: [],
       currentOptions: {},
       currentQuestion: {},
       nextQuestion: {},
       previousQuestion: {},
-      score: 0,
       numberOfQuestions: 0,
       totalAssignedScore: 0,
       numberOfAnsweredQuestions: 0,
       currentQuestionIndex: 0,
+      loggedIn: false,
     };
   }
 
@@ -28,6 +31,7 @@ export default class TakeTest extends Component {
       var { slug } = this.props.location.category;
       this.setState({
         condition: this.props.location.category.condition.condition,
+        loggedIn: this.props.loggedIn,
       });
 
       const url =
@@ -40,9 +44,9 @@ export default class TakeTest extends Component {
 
       this.setState({
         questions: data.data,
-        isLoading: false,
       });
     }
+
     let {
       questions,
       currentQuestion,
@@ -84,14 +88,20 @@ export default class TakeTest extends Component {
     }
   };
 
-  computeScore = (mark) => {
+  computeScore = (question_id, option_id) => {
     this.setState(
       (prevState) => ({
-        score: prevState.score + mark,
         currentQuestionIndex: prevState.currentQuestionIndex + 1,
         numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1,
         totalAssignedScore:
           prevState.totalAssignedScore + prevState.currentOptions.length,
+        answers: [
+          ...prevState.answers,
+          {
+            question: question_id.toString(),
+            option: option_id.toString(),
+          },
+        ],
       }),
       () => {
         if (this.state.nextQuestion === undefined) {
@@ -112,38 +122,41 @@ export default class TakeTest extends Component {
 
   displayResults = () => {
     alert("You have come to the end of the test. Click OK to view your result");
-    const { state } = this;
-    const percentage_level =
-      (this.state.score / this.state.totalAssignedScore) * 100;
-    var recommendation = "";
-    var level;
-    if (percentage_level < 50) {
-      level = "Low Level";
-      recommendation =
-        "You may not necessarily need medical attention but you are advised to talk to someone close and look up more about the mental illness";
-    } else if (percentage_level > 50 && level < 80) {
-      level = "High Level";
-      recommendation =
-        "You may be currently experiencing symptoms of moderate illness. The results doesn’t mean that you are sick but this symptoms could be causing difficulties managing relationships and even everyday task";
-    } else {
-      level = "High Level";
-      recommendation =
-        "The user need urgent medical attention and could be Suicidal at this point";
-    }
-    const userStats = {
-      condition: state.condition,
-      score: state.score,
-      numberOfQuestions: state.numberOfQuestions,
-      totalAssignedScore: state.totalAssignedScore,
-      percentageScore: percentage_level,
-      level: level,
-      recommendation: recommendation,
-      loggedIn: this.props.loggedIn,
-    };
-    console.log(userStats);
-    setTimeout(() => {
-      this.props.history.push("/result", userStats);
-    }, 1000);
+    var { slug } = this.props.location.category;
+    const { answers } = this.state;
+    const token = getToken();
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+    const api =
+      `https://evening-mesa-59655.herokuapp.com/api/mental-conditions/` +
+      slug.slug +
+      `/answers`;
+
+    axios
+      .post(
+        api,
+        {
+          answers: answers,
+        },
+        config
+      )
+      .then((response) => {
+        var userStats = {
+          result: response.data.data,
+          loggedIn: this.props.loggedIn,
+        };
+        setTimeout(() => {
+          this.props.history.push("/result", userStats);
+        }, 1000);
+      })
+      .catch((err) => {
+        if (err.response) {
+          this.setState({
+            errors: err.response.data,
+            displayErrors: true,
+            success: "",
+          });
+        }
+      });
   };
 
   render() {
@@ -153,7 +166,7 @@ export default class TakeTest extends Component {
       numberOfQuestions,
       currentQuestionIndex,
     } = this.state;
-    const { question, options } = currentQuestion;
+    const { id, question, options } = currentQuestion;
 
     let displayTest;
     if (condition) {
@@ -169,8 +182,11 @@ export default class TakeTest extends Component {
                   <div className="text-center">
                     <p>
                       <span>
-                        Question {currentQuestionIndex + 1} of{" "}
-                        {numberOfQuestions}
+                        Question{" "}
+                        {currentQuestionIndex !== numberOfQuestions
+                          ? currentQuestionIndex + 1
+                          : numberOfQuestions}{" "}
+                        of {numberOfQuestions}
                       </span>
                     </p>
                   </div>
@@ -183,7 +199,8 @@ export default class TakeTest extends Component {
                               id={option.id}
                               onClick={this.computeScore.bind(
                                 this,
-                                option.mark
+                                id,
+                                option.id
                               )}
                               className="option"
                               key={option.id}
@@ -199,35 +216,13 @@ export default class TakeTest extends Component {
             </section>
           </>
         );
-      } else if (numberOfQuestions === 0) {
-        displayTest = (
-          <>
-            <section className="col-md-9 mt-3 mb-3 mx-auto">
-              <h1 className="h3  text-center font-weight-normal">
-                Sorry, {condition} Test is not Available Now
-              </h1>
-
-              <div className="take-test-container">
-                <p>
-                  <Link to="/categories" className="text-button">
-                    Take another Test
-                  </Link>
-                </p>
-              </div>
-            </section>
-          </>
-        );
       }
     } else {
       displayTest = (
         <>
-          <section className="col-md-9 mt-3 mb-3 mx-auto">
-            <h1 className="h3  text-center font-weight-normal">
-              No Test Available
-            </h1>
-
-            <div className="take-test-container">
-              <p>
+          <section className="col-md-9 mt-3 mb-3  mx-auto">
+            <div className="take-test-container ">
+              <p className="pt-7">
                 <Link to="/categories" className="text-button">
                   Take a Test
                 </Link>
