@@ -73,8 +73,6 @@ class Register extends Component {
     this.setState({
       states: data.data,
     });
-
-    console.log(this.state.states);
   }
 
   componentWillUnmount() {
