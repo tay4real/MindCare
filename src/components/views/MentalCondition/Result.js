@@ -74,10 +74,17 @@ export class Result extends Component {
                     <br />
                     <p>Thank you for taking the test on mindcare</p>
                     <p>Here is the summary of your test result</p>
-                    <p>Name of </p>
-                    <p>Your Score Point is {scored_point}.</p>
                     <p>
-                      Your result shows that {possible_ailment.toLowerCase()}
+                      Mental Test:{" "}
+                      <span className="text-bold">{mental_condition}</span>
+                    </p>
+                    <p>
+                      Score Point:{" "}
+                      <span className="text-bold">{scored_point}</span>.
+                    </p>
+                    <p>
+                      Test Result Analysis: Your result shows that{" "}
+                      {possible_ailment.toLowerCase()}
                     </p>
                     <p>
                       <small>
