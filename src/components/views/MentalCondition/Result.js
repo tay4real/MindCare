@@ -64,13 +64,15 @@ export class Result extends Component {
           <>
             <section className="col-md-9 mt-3 mb-3 mx-auto">
               <h1 className="h3  text-center font-weight-normal">
-                Test Result
+                Mental Test Result
               </h1>
 
               {
                 <div className="questions">
                   <div className="text-justify text-center">
-                    <h5>Hi! {name}</h5>
+                    <h5>
+                      Hi! <span>{name}</span>
+                    </h5>
                     <br />
                     <p>Thank you for taking the test on mindcare</p>
                     <p>Here is the summary of your test result</p>
@@ -83,8 +85,11 @@ export class Result extends Component {
                       <span className="text-bold">{scored_point}</span>.
                     </p>
                     <p>
-                      Test Result Analysis: Your result shows that{" "}
-                      {possible_ailment.toLowerCase()}
+                      Test Result Analysis: <br />
+                      <span className="text-bold">
+                        {" "}
+                        Your result shows that {possible_ailment.toLowerCase()}
+                      </span>
                     </p>
                     <p>
                       <small>
