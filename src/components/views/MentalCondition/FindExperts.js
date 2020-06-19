@@ -1,9 +1,16 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-//import Agreement from "./Agreement";
+import ExpertList from "./ExpertList";
 
 class FindExperts extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      expert: "",
+    };
+  }
+
   render() {
     return (
       <>
@@ -19,11 +26,12 @@ class FindExperts extends Component {
             <h1 className="h3  text-center font-weight-normal">Find Help</h1>
 
             <p className="text-center">
-              Select the mental health test to see if you may benefit from
-              further diagnosis and treatment from a mental heath professional
+              Here is a List of professional medical experts that can be of help
+              to you. You can also use the search box to find the nearest
+              professional closest to you.
             </p>
 
-            <div className="grid-container"></div>
+            <ExpertList />
           </div>
         </div>
       </>

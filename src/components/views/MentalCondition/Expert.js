@@ -1,36 +1,30 @@
-import React from 'react'
-import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
+import React from "react";
+import expert_profile from "../../../assets/images/expert_profile.jpg"
 
 const Expert = (props) => {
-    return(
-        <div>
-          { props.expert ? (
-                <Card>
-                    <CardMedia style={{height: 0, paddingTop: '56.25%'}}
-                        image={props.course.fields.courseImage.fields.file.url}
-                        title={props.course.fields.title}
-                        />
-                    <CardContent>
-                        <Typography gutterBottom variant="headline" component="h2">
-                            {props.course.fields.title}
-                        </Typography>
-                        <Typography component="p">
-                            {props.course.fields.description}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button size="small" color="primary" href={props.course.fields.url} target="_blank">
-                            Go To Course
-                        </Button> 
-                    </CardActions>
-                </Card>
-          ): null }  
+  console.log(props.expert);
+  return (
+    <div>
+      {props.expert ? (
+        <div className="card">
+          <img
+            className="card-img-top"
+            src={expert_profile}
+            alt={props.expert.name}
+          />
+          <div className="card-body">
+            <h5 className="card-title text-bold">
+              {props.expert.title + " " + props.expert.name}
+            </h5>
+            <p className="card-text">{props.expert.about}</p>
+            <p className="card-text">
+              Phone Number: {props.expert.phone_number}
+            </p>
+            <p className="card-text"> Location: {props.expert.address}</p>
+          </div>
         </div>
-    )
-}
-export default Expert
+      ) : null}
+    </div>
+  );
+};
+export default Expert;

@@ -122,41 +122,44 @@ export default class TakeTest extends Component {
 
   displayResults = () => {
     alert("You have come to the end of the test. Click OK to view your result");
-    var { slug } = this.props.location.category;
-    const { answers } = this.state;
-    const token = getToken();
-    const config = { headers: { Authorization: `Bearer ${token}` } };
-    const api =
-      `https://evening-mesa-59655.herokuapp.com/api/mental-conditions/` +
-      slug.slug +
-      `/answers`;
+    if (this.state.loggedIn) {
+      var { slug } = this.props.location.category;
+      const { answers } = this.state;
+      const token = getToken();
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      const api =
+        `https://evening-mesa-59655.herokuapp.com/api/mental-conditions/` +
+        slug.slug +
+        `/answers`;
 
-    axios
-      .post(
-        api,
-        {
-          answers: answers,
-        },
-        config
-      )
-      .then((response) => {
-        var userStats = {
-          result: response.data.data,
-          loggedIn: this.props.loggedIn,
-        };
-        setTimeout(() => {
-          this.props.history.push("/result", userStats);
-        }, 1000);
-      })
-      .catch((err) => {
-        if (err.response) {
-          this.setState({
-            errors: err.response.data,
-            displayErrors: true,
-            success: "",
-          });
-        }
-      });
+      axios
+        .post(
+          api,
+          {
+            answers: answers,
+          },
+          config
+        )
+        .then((response) => {
+          var userStats = {
+            result: response.data.data,
+            loggedIn: this.props.loggedIn,
+          };
+          setTimeout(() => {
+            this.props.history.push("/result", userStats);
+          }, 1000);
+        })
+        .catch((err) => {
+          if (err.response) {
+            this.setState({
+              errors: err.response.data,
+              displayErrors: true,
+              success: "",
+            });
+          }
+        });
+    } else {
+    }
   };
 
   render() {
@@ -165,68 +168,86 @@ export default class TakeTest extends Component {
       condition,
       numberOfQuestions,
       currentQuestionIndex,
+      loggedIn,
     } = this.state;
     const { id, question, options } = currentQuestion;
 
     let displayTest;
-    if (condition) {
-      if (question) {
-        displayTest = (
-          <>
-            <section className="col-md-9 mt-3 mb-3 mx-auto">
-              <h1 className="h3  text-center font-weight-normal">
-                {condition} Test
-              </h1>
-              {
-                <div className="questions">
-                  <div className="text-center">
-                    <p>
-                      <span>
-                        Question{" "}
-                        {currentQuestionIndex !== numberOfQuestions
-                          ? currentQuestionIndex + 1
-                          : numberOfQuestions}{" "}
-                        of {numberOfQuestions}
-                      </span>
-                    </p>
+    if (loggedIn) {
+      if (condition) {
+        if (question) {
+          displayTest = (
+            <>
+              <section className="col-md-9 mt-3 mb-3 mx-auto">
+                <h1 className="h3  text-center font-weight-normal">
+                  {condition} Test
+                </h1>
+                {
+                  <div className="questions">
+                    <div className="text-center">
+                      <p>
+                        <span>
+                          Question{" "}
+                          {currentQuestionIndex !== numberOfQuestions
+                            ? currentQuestionIndex + 1
+                            : numberOfQuestions}{" "}
+                          of {numberOfQuestions}
+                        </span>
+                      </p>
+                    </div>
+                    <h5>{question}</h5>
+                    <div className=" grid-container">
+                      {options && options.length > 0
+                        ? options.map((option) => {
+                            return (
+                              <div
+                                id={option.id}
+                                onClick={this.computeScore.bind(
+                                  this,
+                                  id,
+                                  option.id
+                                )}
+                                className="option"
+                                key={option.id}
+                              >
+                                {option.option}
+                              </div>
+                            );
+                          })
+                        : "Loading..."}
+                    </div>
                   </div>
-                  <h5>{question}</h5>
-                  <div className=" grid-container">
-                    {options && options.length > 0
-                      ? options.map((option) => {
-                          return (
-                            <div
-                              id={option.id}
-                              onClick={this.computeScore.bind(
-                                this,
-                                id,
-                                option.id
-                              )}
-                              className="option"
-                              key={option.id}
-                            >
-                              {option.option}
-                            </div>
-                          );
-                        })
-                      : "Loading..."}
-                  </div>
-                </div>
-              }
-            </section>
-          </>
-        );
+                }
+              </section>
+            </>
+          );
+        }
       }
     } else {
       displayTest = (
         <>
-          <section className="col-md-9 mt-3 mb-3  mx-auto">
-            <div className="take-test-container ">
-              <p className="pt-7">
-                <Link to="/categories" className="text-button">
-                  Take a Test
-                </Link>
-              </p>
+          <section className="col-md-9 mt-3 mb-3  mx-auto ">
+            <div className="card">
+              <h1
+                className="h3  text-center font-weight-normal "
+                style={{ padding: "10px", color: "black" }}
+              >
+                Welcome to MindCare Mental Health Test. <br />
+                Please Login or Register to take the Test.
+              </h1>
+              <div className="grid-container">
+                <p>
+                  <Link to="/signin" className="text-button">
+                    Login
+                  </Link>
+                </p>
+
+                <p>
+                  <Link to="/signup" className="text-button">
+                    Register
+                  </Link>
+                </p>
+              </div>
             </div>
           </section>
         </>

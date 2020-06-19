@@ -1,42 +1,45 @@
 import React, { Component } from "react";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import * as contentful from "contentful";
+
 import Expert from "./Expert";
-
-const SPACE_ID = "[INSERT YOUR CONTENTFUL SPACE ID HERE]";
-const ACCESS_TOKEN = "[INSERT YOUR CONTENTFUL ACCESS TOKEN HERE]";
-
-const client = contentful.createClient({
-  space: SPACE_ID,
-  accessToken: ACCESS_TOKEN,
-});
+import { getMedicalExpert } from "../../Utils/Common";
 
 class ExpertList extends Component {
   state = {
     experts: [],
     searchString: "",
+    states: [],
   };
-
   constructor() {
     super();
+
     this.getExperts();
   }
 
   getExperts = () => {
-    client
-      .getEntries({
-        content_type: "course",
-        query: this.state.searchString,
+    const { searchString } = this.state;
+    console.log(searchString);
+
+    getMedicalExpert(searchString)
+      .then((res) => {
+        this.setState({
+          experts: res.data,
+        });
       })
-      .then((response) => {
-        this.setState({ courses: response.items });
-      })
-      .catch((error) => {
-        console.log("Error occured while fetching data");
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
       });
   };
+
+  async componentDidMount() {
+    this._isMounted = true;
+
+    const url = "https://evening-mesa-59655.herokuapp.com/api/states";
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({
+      states: data.data,
+    });
+  }
 
   onSearchInputChange = (event) => {
     if (event.target.value) {
@@ -44,28 +47,45 @@ class ExpertList extends Component {
     } else {
       this.setState({ searchString: "" });
     }
-    this.getCourses();
+    this.getExperts();
   };
 
   render() {
+    const { states } = this.state;
+    let stateList;
+    if (states !== undefined) {
+      stateList = states.map((state) => {
+        const { id, name } = state;
+        return (
+          <option key={id} value={id}>
+            {name}
+          </option>
+        );
+      });
+    }
     return (
       <div>
-        {this.state.courses ? (
+        {this.state.experts ? (
           <div>
-            <TextField
-              style={{ padding: 24 }}
-              id="searchInput"
-              placeholder="Search for Courses"
-              margin="normal"
-              onChange={this.onSearchInputChange}
-            />
-            <Grid container spacing={24} style={{ padding: 24 }}>
+            <div className="form-group">
+              <label htmlFor="state">Search by State</label>
+              <select
+                className="custom-select"
+                onChange={this.onSearchInputChange}
+                name="state"
+              >
+                <option>-- State --</option>
+                {stateList}
+              </select>
+            </div>
+
+            <div className="grid-container">
               {this.state.experts.map((currentExpert) => (
-                <Grid item xs={12} sm={6} lg={4} xl={3}>
+                <div className="card" key={currentExpert.phone_number}>
                   <Expert expert={currentExpert} />
-                </Grid>
+                </div>
               ))}
-            </Grid>
+            </div>
           </div>
         ) : (
           "No experts found"
