@@ -179,7 +179,7 @@ class Register extends Component {
               style={{ display: "block" }}
             >
               {message[field].map((error) => (
-                <div key={field}>{error}</div>
+                <div key={field} style={{textTransform:"capitalize"}}>{error}</div>
               ))}
             </div>
           ))}

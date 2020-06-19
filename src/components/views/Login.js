@@ -39,20 +39,17 @@ class Login extends Component {
         if (!loggedIn) {
           LoginToggle();
         }
-        
       })
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
           this.setState({
-            errors: err.response.data,
+            errors: err.response.data.message,
             displayErrors: true,
-            success: "",
+            success: false,
           });
         }
       });
-
-    
   }
 
   renderError(message) {
@@ -60,17 +57,12 @@ class Login extends Component {
     else {
       return (
         <div>
-          {Object.keys(message).map((field) => (
-            <div
-              key={field}
-              className="p-3 mb-2 bg-danger text-white text-white text-center"
-              style={{ display: "block" }}
-            >
-              {message[field].map((error) => (
-                <div key={field}>{error}</div>
-              ))}
-            </div>
-          ))}
+          <div
+            className="p-3 mb-2 bg-danger text-white text-white text-center"
+            style={{ display: "block" }}
+          >
+            <div style={{textTransform:"capitalize"}}>{message}</div>
+          </div>
         </div>
       );
     }
