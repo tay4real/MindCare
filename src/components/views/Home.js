@@ -22,7 +22,7 @@ export class Home extends Component {
     return (
       <>
         <Helmet>
-          <title>MindCare | Home</title>
+          <title>MindCare | Mental Health</title>
         </Helmet>
         <header id="home">
           <section className="text-white">

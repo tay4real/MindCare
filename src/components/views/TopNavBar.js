@@ -39,6 +39,7 @@ export class TopNavBar extends Component {
               activeClassName="active"
               to="/categories"
               className="w3-bar-item w3-button"
+              onClick={this.props.openModal}
               style={{ textDecoration: "none" }}
             >
               MENTAL HEALTH TEST

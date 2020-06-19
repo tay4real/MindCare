@@ -35,23 +35,24 @@ class Login extends Component {
     axios
       .post("https://evening-mesa-59655.herokuapp.com/api/login", user)
       .then((response) => {
-        console.log(response);
-        localStorage.setItem("token", response.data.access_token);
         setUserSession(response.data.access_token);
         if (!loggedIn) {
           LoginToggle();
         }
+        
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response.data.errors);
+          console.log(err.response.data);
           this.setState({
-            errors: err.response.data.errors,
+            errors: err.response.data,
             displayErrors: true,
             success: "",
           });
         }
       });
+
+    
   }
 
   renderError(message) {
@@ -77,8 +78,9 @@ class Login extends Component {
 
   render() {
     const { email, password } = this.state;
+
     if (this.props.loggedIn) {
-      return <Redirect to="/dashboard" />;
+      return <Redirect to="/" />;
     }
     return (
       <div id="login" className="container" style={{ padding: "100px 16px" }}>

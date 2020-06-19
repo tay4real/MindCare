@@ -7,6 +7,16 @@ export class SideNavBar extends Component {
     loggedIn: false,
   };
 
+  disclaimer() {
+    const { openModal } = this.props;
+    openModal();
+    //closed();
+  }
+  logout() {
+    const { handleLogout } = this.props;
+    handleLogout();
+    //closed();
+  }
   componentDidMount() {
     const { handleLogin } = this.props;
     handleLogin();
