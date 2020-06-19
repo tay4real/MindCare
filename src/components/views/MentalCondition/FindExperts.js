@@ -1,31 +1,34 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+//import Agreement from "./Agreement";
 
-export default class FindExperts extends Component {
+class FindExperts extends Component {
   render() {
     return (
-      <div
-        id="agreement"
-        style={{ display: this.props.show ? "block" : "none" }}
-      >
-        <div className="findhelp-container">
-          <div className="w3-center">
-            <br />
+      <>
+        <Helmet>
+          <title>MindCare | Find Help</title>
+        </Helmet>
+        <div
+          id="categories"
+          className="container"
+          style={{ padding: "100px 16px" }}
+        >
+          <div className="col-md-9 mt-3 mb-3 mx-auto">
+            <h1 className="h3  text-center font-weight-normal">Find Help</h1>
 
-            <div>
-              <Link to="/findhelp" className="findhelp">
-                Find Nearby Mental Experts Here
-              </Link>
-            </div>
-            <span
-              onClick={this.props.close}
-              className="w3-button w3-xlarge w3-text-black w3-display-topright"
-            >
-              ×
-            </span>
+            <p className="text-center">
+              Select the mental health test to see if you may benefit from
+              further diagnosis and treatment from a mental heath professional
+            </p>
+
+            <div className="grid-container"></div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
+
+export default FindExperts;
