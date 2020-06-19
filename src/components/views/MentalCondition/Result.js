@@ -71,7 +71,7 @@ export class Result extends Component {
                 <div className="questions">
                   <div className="text-justify text-center">
                     <h5>
-                      Hi! <span>{name}</span>
+                      Hi! <span className="text-bold">{name}</span>
                     </h5>
                     <br />
                     <p>Thank you for taking the test on mindcare</p>
