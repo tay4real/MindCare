@@ -16,11 +16,14 @@ import Register from "../views/Register";
 import Dashboard from "../views/Dashboard";
 import TakeTest from "../views/MentalCondition/TakeTest";
 import Result from "../views/MentalCondition/Result";
+import RegistrationStatus from "../views/RegistrationStatus";
+import FindExperts from "../views/MentalCondition/FindExperts";
 
 //var hist = createBrowserHistory();
 
 export class Routes extends Component {
   state = {
+    showModal: false,
     showSidebar: false,
     mentalconditions: [],
     isLoading: true,
@@ -38,6 +41,18 @@ export class Routes extends Component {
       isLoading: false,
     });
   }
+
+  closeModal = () => {
+    this.setState({ showModal: false });
+  };
+  ModalToggle = () => {
+    this.setState((prevState) => {
+      return { showModal: !prevState.showModal };
+    });
+  };
+  openModal = () => {
+    this.setState({ showModal: true });
+  };
 
   handleLogout = () => {
     removeUserSession();
@@ -77,6 +92,7 @@ export class Routes extends Component {
           toggleSidebar={this.SidebarToggle}
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
+          openModal={this.openModal}
           loggedIn={this.state.loggedIn}
         />
         <SideNavBar
@@ -84,11 +100,17 @@ export class Routes extends Component {
           show={this.state.showSidebar}
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
+          openModal={this.openModal}
           loggedIn={this.state.loggedIn}
         />
 
         <Switch>
-          <Route exact path="/" component={Home} />
+          {this.state.loggedIn ? (
+            <Route exact path="/" component={Dashboard} />
+          ) : (
+            <Route path="/" exact component={Home} />
+          )}
+
           <Route path="/about" exact component={About} />
           <Route
             path="/categories"
@@ -97,6 +119,8 @@ export class Routes extends Component {
                 {...props}
                 isLoading={this.state.isLoading}
                 mentalconditions={this.state.mentalconditions}
+                ModalToggle={this.ModalToggle}
+                showModal={this.state.showModal}
               />
             )}
           />
@@ -118,9 +142,13 @@ export class Routes extends Component {
               />
             )}
           />
-
+          <Route path="/findhelp" exact component={FindExperts} />
           <Route path="/signup" exact component={Register} />
-          <Route path="/dashboard" exact component={Dashboard} />
+          <Route
+            path="/registration-status"
+            exact
+            component={RegistrationStatus}
+          />
         </Switch>
 
         <Footer />
