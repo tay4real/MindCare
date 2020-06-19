@@ -34,3 +34,27 @@ export const getUserProfile = () => {
       console.log(err);
     });
 };
+
+export const getMedicalExpert = (searchString) => {
+  if (searchString === "") {
+    return axios
+      .get("https://evening-mesa-59655.herokuapp.com/api/medical-experts")
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    return axios
+      .get("https://evening-mesa-59655.herokuapp.com/api/medical-experts", {
+        state: searchString,
+      })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+};
