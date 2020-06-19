@@ -1,12 +1,12 @@
 import React from "react";
-import expert_profile from "../../../assets/images/expert_profile.jpg"
+import expert_profile from "../../../assets/images/expert_profile.jpg";
 
 const Expert = (props) => {
   console.log(props.expert);
   return (
     <div>
       {props.expert ? (
-        <div className="card">
+        <div className="card" style={{ borderStyle: "hidden" }}>
           <img
             className="card-img-top"
             src={expert_profile}

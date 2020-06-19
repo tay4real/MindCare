@@ -81,7 +81,11 @@ class ExpertList extends Component {
 
             <div className="grid-container">
               {this.state.experts.map((currentExpert) => (
-                <div className="card" key={currentExpert.phone_number}>
+                <div
+                  className="card"
+                  style={{ margin: 0, padding: 0 }}
+                  key={currentExpert.phone_number}
+                >
                   <Expert expert={currentExpert} />
                 </div>
               ))}
