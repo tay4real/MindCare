@@ -1,25 +1,22 @@
 import React, { Component } from "react";
-
 import Expert from "./Expert";
 import { getMedicalExpert } from "../../Utils/Common";
 
 class ExpertList extends Component {
-  state = {
-    experts: [],
-    searchString: "",
-    states: [],
-  };
   constructor() {
     super();
+    this.state = {
+      experts: [],
+      state: "",
+      states: [],
+    };
 
-    this.getExperts();
+    this.onChange = this.onChange.bind(this);
   }
 
-  getExperts = () => {
-    const { searchString } = this.state;
-    console.log(searchString);
-
-    getMedicalExpert(searchString)
+  getExperts = (value) => {
+    console.log(value);
+    getMedicalExpert(value)
       .then((res) => {
         this.setState({
           experts: res.data,
@@ -39,16 +36,18 @@ class ExpertList extends Component {
     this.setState({
       states: data.data,
     });
+
+    this.getExperts(this.state.state);
   }
 
-  onSearchInputChange = (event) => {
-    if (event.target.value) {
-      this.setState({ searchString: event.target.value });
-    } else {
-      this.setState({ searchString: "" });
-    }
-    this.getExperts();
-  };
+  onChange(e) {
+    e.preventDefault();
+
+    const { name, value } = e.target;
+
+    this.setState({ [name]: value });
+    this.getExperts(value);
+  }
 
   render() {
     const { states } = this.state;
@@ -71,10 +70,10 @@ class ExpertList extends Component {
               <label htmlFor="state">Search by State</label>
               <select
                 className="custom-select"
-                onChange={this.onSearchInputChange}
+                onChange={this.onChange}
                 name="state"
               >
-                <option>-- State --</option>
+                <option value={""}>Show All States</option>
                 {stateList}
               </select>
             </div>
