@@ -37,7 +37,7 @@ class Register extends Component {
     super(props);
     this.state = {
       first_name: "",
-      last_name: "",
+      last_name: "User",
       email: "",
       phone_number: "",
       dob: "",
@@ -132,8 +132,15 @@ class Register extends Component {
     e.preventDefault();
 
     if (formValid(this.state)) {
+      let fname;
+      if (this.state.first_name === "") {
+        fname = "Anonymous User";
+      } else {
+        fname = this.state.first_name;
+      }
+
       const newUser = {
-        name: this.state.first_name + " " + this.state.last_name,
+        name: fname,
         email: this.state.email,
         password: this.state.password,
         re_password: this.state.re_password,
@@ -179,7 +186,9 @@ class Register extends Component {
               style={{ display: "block" }}
             >
               {message[field].map((error) => (
-                <div key={field} style={{textTransform:"capitalize"}}>{error}</div>
+                <div key={field} style={{ textTransform: "capitalize" }}>
+                  {error}
+                </div>
               ))}
             </div>
           ))}
@@ -252,12 +261,12 @@ class Register extends Component {
             <form noValidate onSubmit={this.onSubmit}>
               <div className="card-body">
                 <div className="form-group">
-                  <label htmlFor="first_name">First Name</label>
+                  <label htmlFor="first_name">Name</label>
                   <input
                     type="text"
                     className="form-control"
                     name="first_name"
-                    placeholder="Enter First Name"
+                    placeholder="Enter Your Name (Optional)"
                     value={this.state.first_name}
                     onChange={this.onChange}
                   />
@@ -268,13 +277,13 @@ class Register extends Component {
                   )}
                 </div>
 
-                <div className="form-group">
+                <div className="form-group" style={{ display: "none" }}>
                   <label htmlFor="last_name">Last Name</label>
                   <input
                     type="text"
                     className="form-control"
                     name="last_name"
-                    placeholder="Enter Last Name"
+                    placeholder="Enter Last Name (Optional)"
                     value={this.state.last_name}
                     onChange={this.onChange}
                   />
@@ -285,7 +294,7 @@ class Register extends Component {
                   )}
                 </div>
 
-                <div className="form-group">
+                <div className="form-group hide" style={{ display: "none" }}>
                   <label htmlFor="dob">Date of Birth</label>
                   <input
                     type="date"
@@ -297,7 +306,7 @@ class Register extends Component {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group hide" style={{ display: "none" }}>
                   <label htmlFor="phone_number">Phone Number</label>
                   <input
                     type="text"
@@ -323,7 +332,7 @@ class Register extends Component {
                   )}
                 </div>
 
-                <div className="form-group">
+                <div className="form-group" style={{ display: "none" }}>
                   <label htmlFor="email">Address</label>
                   <textarea
                     className="form-control"
@@ -333,7 +342,7 @@ class Register extends Component {
                     onChange={this.onChange}
                   ></textarea>
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{ display: "none" }}>
                   <label htmlFor="state">State</label>
                   <select
                     className="custom-select"
@@ -344,7 +353,7 @@ class Register extends Component {
                     {stateList}
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{ display: "none" }}>
                   <label htmlFor="state">LGA</label>
                   <select
                     className="custom-select"
@@ -404,7 +413,6 @@ class Register extends Component {
                   <button
                     type="submit"
                     className="btn btn-lg btn-primary btn-block"
-                    disabled
                   >
                     Register
                   </button>

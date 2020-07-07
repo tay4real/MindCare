@@ -3,15 +3,13 @@ import { NavLink } from "react-router-dom";
 import mindCareLogo from "../../assets/images/mindcare_logo.jpg";
 
 export class TopNavBar extends Component {
-  
-
   componentDidMount() {
     const { handleLogin } = this.props;
     handleLogin();
   }
   render() {
     return (
-      <div className="w3-top">
+      <div className="w3-top" style={{ zIndex: 100 }}>
         <div className="w3-bar w3-container w3-white w3-card" id="myNavbar">
           <NavLink
             activeClassName="active"
