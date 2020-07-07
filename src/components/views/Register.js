@@ -132,8 +132,21 @@ class Register extends Component {
     e.preventDefault();
 
     if (formValid(this.state)) {
+      let fname, lname;
+      if (this.state.first_name === "") {
+        fname = "Anonymous";
+      } else {
+        fname = this.state.first_name;
+      }
+
+      if (this.state.last_name === "") {
+        lname = "User";
+      } else {
+        lname = this.state.last_name;
+      }
+
       const newUser = {
-        name: this.state.first_name + " " + this.state.last_name,
+        name: fname + " " + lname,
         email: this.state.email,
         password: this.state.password,
         re_password: this.state.re_password,
@@ -179,7 +192,9 @@ class Register extends Component {
               style={{ display: "block" }}
             >
               {message[field].map((error) => (
-                <div key={field} style={{textTransform:"capitalize"}}>{error}</div>
+                <div key={field} style={{ textTransform: "capitalize" }}>
+                  {error}
+                </div>
               ))}
             </div>
           ))}
@@ -257,7 +272,7 @@ class Register extends Component {
                     type="text"
                     className="form-control"
                     name="first_name"
-                    placeholder="Enter First Name"
+                    placeholder="Enter First Name (Optional)"
                     value={this.state.first_name}
                     onChange={this.onChange}
                   />
@@ -274,7 +289,7 @@ class Register extends Component {
                     type="text"
                     className="form-control"
                     name="last_name"
-                    placeholder="Enter Last Name"
+                    placeholder="Enter Last Name (Optional)"
                     value={this.state.last_name}
                     onChange={this.onChange}
                   />
@@ -285,7 +300,7 @@ class Register extends Component {
                   )}
                 </div>
 
-                <div className="form-group">
+                <div className="form-group hide" style={{ display: "none" }}>
                   <label htmlFor="dob">Date of Birth</label>
                   <input
                     type="date"
@@ -297,7 +312,7 @@ class Register extends Component {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group hide" style={{ display: "none" }}>
                   <label htmlFor="phone_number">Phone Number</label>
                   <input
                     type="text"
@@ -323,7 +338,7 @@ class Register extends Component {
                   )}
                 </div>
 
-                <div className="form-group">
+                <div className="form-group" style={{ display: "none" }}>
                   <label htmlFor="email">Address</label>
                   <textarea
                     className="form-control"
@@ -333,7 +348,7 @@ class Register extends Component {
                     onChange={this.onChange}
                   ></textarea>
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{ display: "none" }}>
                   <label htmlFor="state">State</label>
                   <select
                     className="custom-select"
@@ -344,7 +359,7 @@ class Register extends Component {
                     {stateList}
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{ display: "none" }}>
                   <label htmlFor="state">LGA</label>
                   <select
                     className="custom-select"
@@ -404,7 +419,6 @@ class Register extends Component {
                   <button
                     type="submit"
                     className="btn btn-lg btn-primary btn-block"
-                    disabled
                   >
                     Register
                   </button>

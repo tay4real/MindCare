@@ -16,8 +16,13 @@ import Register from "../views/Register";
 import Dashboard from "../views/Dashboard";
 import TakeTest from "../views/MentalCondition/TakeTest";
 import Result from "../views/MentalCondition/Result";
+import ResultUnAuth from "../views/MentalCondition/Result_unauthenticated";
 import RegistrationStatus from "../views/RegistrationStatus";
 import FindExperts from "../views/MentalCondition/FindExperts";
+import Learn from "../views/MentalCondition/Learn";
+import BipolarDisorder from "../views/MentalInformation/BipolarDisorder";
+import AnxietyDisorder from "../views/MentalInformation/AnxietyDisorder";
+import ADHD from "../views/MentalInformation/adhd";
 
 //var hist = createBrowserHistory();
 
@@ -110,7 +115,6 @@ export class Routes extends Component {
           ) : (
             <Route path="/" exact component={Home} />
           )}
-
           <Route path="/about" exact component={About} />
           <Route
             path="/categories"
@@ -124,14 +128,18 @@ export class Routes extends Component {
               />
             )}
           />
-
+          <Route path="/learn" exact component={Learn} />
           <Route
             path="/mentaltest"
             render={(props) => (
               <TakeTest {...props} loggedIn={this.state.loggedIn} />
             )}
           />
+          <Route path="/anxiety-disorders" exact component={AnxietyDisorder} />
+          <Route path="/bipolar-disorder" exact component={BipolarDisorder} />
+          <Route path="/adhd" exact component={ADHD} />
           <Route path="/result" exact component={Result} />
+          <Route path="/resultunauth" exact component={ResultUnAuth} />
           <Route
             path="/signin"
             render={(props) => (
