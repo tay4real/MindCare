@@ -24,6 +24,7 @@ export class Home extends Component {
         <Helmet>
           <title>MindCare | Mental Health</title>
         </Helmet>
+
         <header id="home">
           <section className="text-white">
             <h1>Know Your Mental Health Status</h1>
@@ -33,6 +34,11 @@ export class Home extends Component {
               <p>
                 <Link to="/" onClick={this.openModal} className="text-button">
                   Take a Test
+                </Link>
+              </p>
+              <p>
+                <Link to="/learn" className="learn-button">
+                  Learn
                 </Link>
               </p>
             </div>

@@ -3,6 +3,8 @@
   background-size: cover;
   background-image: url("../../assets/images/bg.jpg");
   min-height: 100vh;
+  height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-content: space-evenly;
@@ -18,8 +20,6 @@
     border-radius: 10px;
   }
 
-  
-
   h1 {
     text-align: center;
     color: $off-white;
@@ -30,9 +30,13 @@
     line-height: $md;
   }
   .take-test-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+    //width: 100%;
+    //display: flex;
+    //justify-content: space-around;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    padding: 10px;
   }
 
   a.text-button {
@@ -50,6 +54,22 @@
 
   a.text-button:hover {
     background-color: darken($blue, 10%);
+  }
+  a.learn-button {
+    background-color: $orange;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: large;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  a.learn-button:hover {
+    background-color: darken($orange, 10%);
   }
 }
 
@@ -86,9 +106,26 @@
   #home a.text-button:hover {
     background-color: darken($blue, 10%);
   }
+  #home a.learn-button {
+    background-color: $orange;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: $normal;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.learn-button:hover {
+    background-color: darken($orange, 10%);
+  }
 
   #home .take-test-container {
     padding-top: 20vh;
+    grid-template-columns: auto;
   }
 }
 
@@ -124,6 +161,26 @@
 
   #home a.text-button:hover {
     background-color: darken($blue, 10%);
+  }
+  #home a.learn-button {
+    background-color: $orange;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $xs $normal;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: $normal;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.learn-button:hover {
+    background-color: darken($orange, 10%);
+  }
+  #home .take-test-container {
+    padding-top: 20vh;
+    grid-template-columns: auto auto;
   }
 }
 
@@ -161,8 +218,26 @@
     background-color: darken($blue, 10%);
   }
 
+  #home a.learn-button {
+    background-color: $orange;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: xx-large;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.learn-button:hover {
+    background-color: darken($orange, 10%);
+  }
+
   #home .take-test-container {
     padding-top: 20vh;
+    grid-template-columns: auto;
   }
 }
 
@@ -199,8 +274,25 @@
   #home a.text-button:hover {
     background-color: darken($blue, 10%);
   }
+  #home a.learn-button {
+    background-color: $orange;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: $normal;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.learn-button:hover {
+    background-color: darken($orange, 10%);
+  }
   #home .take-test-container {
-    padding-top: 5vh;
+    padding-top: 20vh;
+    grid-template-columns: auto auto;
   }
 }
 
@@ -237,9 +329,26 @@
   #home a.text-button:hover {
     background-color: darken($blue, 10%);
   }
+  #home a.learn-button {
+    background-color: $orange;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: xx-large;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.learn-button:hover {
+    background-color: darken($orange, 10%);
+  }
 
   #home .take-test-container {
-    padding-top: 30vh;
+    padding-top: 10vh;
+    grid-template-columns: auto auto;
   }
 }
 
@@ -262,6 +371,7 @@
 
   #home .take-test-container {
     padding-top: 5vh;
+    grid-template-columns: auto auto;
   }
 
   #home a.text-button {
@@ -279,6 +389,22 @@
 
   #home a.text-button:hover {
     background-color: darken($blue, 10%);
+  }
+  #home a.learn-button {
+    background-color: $orange;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: $normal;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.learn-button:hover {
+    background-color: darken($orange, 10%);
   }
 }
 
@@ -300,7 +426,8 @@
   }
 
   #home .take-test-container {
-    padding-top: 30vh;
+    padding-top: 10vh;
+    grid-template-columns: auto;
   }
 
   #home a.text-button {
@@ -318,6 +445,22 @@
 
   #home a.text-button:hover {
     background-color: darken($blue, 10%);
+  }
+  #home a.learn-button {
+    background-color: $orange;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: xxx-large;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.learn-button:hover {
+    background-color: darken($orange, 10%);
   }
 }
 
@@ -339,7 +482,8 @@
   }
 
   #home .take-test-container {
-    padding-top: 30vh;
+    padding-top: 10vh;
+    grid-template-columns: auto auto;
   }
 
   #home a.text-button {
@@ -357,6 +501,23 @@
 
   #home a.text-button:hover {
     background-color: darken($blue, 10%);
+  }
+
+  #home a.learn-button {
+    background-color: $orange;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: xx-large;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.learn-button:hover {
+    background-color: darken($orange, 10%);
   }
 }
 
@@ -381,6 +542,7 @@
 
   #home .take-test-container {
     padding-top: $normal;
+    grid-template-columns: auto auto;
   }
 
   #home a.text-button {
@@ -398,5 +560,21 @@
 
   #home a.text-button:hover {
     background-color: darken($blue, 10%);
+  }
+  #home a.learn-button {
+    background-color: $orange;
+    color: #ffffff;
+    cursor: pointer;
+    padding: $normal $md;
+    display: block;
+    border-radius: $button-radius;
+    text-align: center;
+    font-size: large;
+    text-decoration: none;
+    transition: 0.1s linear all;
+  }
+
+  #home a.learn-button:hover {
+    background-color: darken($orange, 10%);
   }
 }

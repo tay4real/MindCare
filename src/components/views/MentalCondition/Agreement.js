@@ -34,7 +34,7 @@ export default class Agreement extends Component {
             <div className="grid-container">
               <div>
                 <Link
-                  to="/categories"
+                  to="/mentaltest"
                   onClick={this.props.close}
                   className="agree-button"
                 >

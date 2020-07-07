@@ -32,13 +32,12 @@ export const login = (user) => {
 };
 
 export const getProfile = () => {
-  return axios
+  axios
     .get("https://evening-mesa-59655.herokuapp.com/api/profile", {
-      headers: { Authorization: `Bearer ${localStorage.usertoken}` },
+      headers: { Authorization: `Bearer Token ${localStorage.usertoken}` },
     })
     .then((res) => {
-      console.log(res);
-      return res.data;
+      return res.data.data.data;
     })
     .catch((err) => {
       console.log(err);

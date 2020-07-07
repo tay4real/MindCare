@@ -25,7 +25,7 @@ export class SideNavBar extends Component {
     return (
       <nav
         className="w3-sidebar w3-bar-block w3-card w3-animate-left w3-hide-medium w3-hide-large"
-        style={{ display: this.props.show ? "block" : "none" }}
+        style={{ display: this.props.show ? "block" : "none", zIndex: 100 }}
         id="mySidebar"
       >
         <Link
