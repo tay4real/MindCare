@@ -1,4 +1,4 @@
-#categories {
+#mentalinfo {
   .searchinfo-container {
     width: 100%;
     display: flex;
@@ -9,7 +9,8 @@
   .search-container {
     width: 100%;
     height: 60px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
+    border: blue 1px;
     position: absolute;
     z-index: 30;
     border-radius: 30px;
@@ -45,7 +46,7 @@
 
   .grid-container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
     grid-gap: 10px;
     padding: 10px;
   }
@@ -61,10 +62,10 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) and (orientation: portrait) {
-  #categories .grid-container {
+  #mentalinfo .grid-container {
     grid-template-columns: auto;
   }
-  #categories .search-container {
+  #mentalinfo .search-container {
     width: 100%;
     height: 60px;
   }
@@ -72,38 +73,38 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) and (orientation: landscape) {
-  #categories .grid-container {
+  #mentalinfo .grid-container {
     grid-template-columns: auto;
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) and (orientation: portrait) {
-  #categories .grid-container {
+  #mentalinfo .grid-container {
     grid-template-columns: auto;
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) and (orientation: landscape) {
-  #categories .grid-container {
+  #mentalinfo .grid-container {
     grid-template-columns: auto;
   }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (orientation: portrait) {
-  #categories .grid-container {
+  #mentalinfo .grid-container {
     grid-template-columns: auto;
   }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (orientation: landscape) {
-  #categories .grid-container {
+  #mentalinfo .grid-container {
     grid-template-columns: auto auto;
   }
-  #categories .search-container {
+  #mentalinfo .search-container {
     width: 50%;
     height: 60px;
   }
@@ -111,10 +112,10 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) and (orientation: portrait) {
-  #categories .grid-container {
-    grid-template-columns: auto auto;
+  #mentalinfo .grid-container {
+    grid-template-columns: auto auto auto;
   }
-  #categories .search-container {
+  #mentalinfo .search-container {
     width: 50%;
     height: 60px;
   }
@@ -122,10 +123,10 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  #categories .grid-container {
-    grid-template-columns: auto auto;
+  #mentalinfo .grid-container {
+    grid-template-columns: auto auto auto;
   }
-  #categories .search-container {
+  #mentalinfo .search-container {
     width: 50%;
     height: 60px;
   }
@@ -133,10 +134,10 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) and (orientation: landscape) {
-  #categories .grid-container {
-    grid-template-columns: auto auto;
+  #mentalinfo .grid-container {
+    grid-template-columns: auto auto auto;
   }
-  #categories .search-container {
+  #mentalinfo .search-container {
     width: 50%;
     height: 60px;
   }
