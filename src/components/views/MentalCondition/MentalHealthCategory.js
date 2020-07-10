@@ -80,14 +80,12 @@ export class MentalHealthCategory extends Component {
                       key={slug}
                       style={{ textDecoration: "none", flex: "auto" }}
                     >
-                      <div className="card">
-                        <h5
-                          data-toggle="tooltip"
+                      <div className="card" data-toggle="tooltip"
                           data-placement="bottom"
                           title={filteredMentalInfo.map(
                             ({ synopsis }) => synopsis
-                          )}
-                        >
+                          )}>
+                        <h5>
                           {condition} Test
                         </h5>
                       </div>
