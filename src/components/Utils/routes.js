@@ -23,6 +23,16 @@ import Learn from "../views/MentalCondition/Learn";
 import BipolarDisorder from "../views/MentalInformation/BipolarDisorder";
 import AnxietyDisorder from "../views/MentalInformation/AnxietyDisorder";
 import ADHD from "../views/MentalInformation/adhd";
+import SeasonalPatternDepression from "../views/MentalInformation/SeasonalPatternDepression";
+import BorderlinePersonalityDisorder from "../views/MentalInformation/BorderlinePersonalityDisorder";
+import Depression from "../views/MentalInformation/Depression";
+import DissociativeDisorders from "../views/MentalInformation/DissociativeDisorders";
+import EatingDisorders from "../views/MentalInformation/EatingDisorders";
+import ObsessiveCompulsiveDisorder from "../views/MentalInformation/ObsessiveCompulsiveDisorder";
+import PostpartumDepression from "../views/MentalInformation/PostpartumDepression";
+import PosttraumaticStressDisorder from "../views/MentalInformation/PosttraumaticStressDisorder";
+import SchioaffectiveDisorder from "../views/MentalInformation/SchioaffectiveDisorder";
+import Schizophrenia from "../views/MentalInformation/Schizophrenia";
 
 //var hist = createBrowserHistory();
 
@@ -138,6 +148,44 @@ export class Routes extends Component {
           <Route path="/anxiety-disorders" exact component={AnxietyDisorder} />
           <Route path="/bipolar-disorder" exact component={BipolarDisorder} />
           <Route path="/adhd" exact component={ADHD} />
+          <Route
+            path="/seasonal-pattern-depression"
+            exact
+            component={SeasonalPatternDepression}
+          />
+          <Route
+            path="/borderline-personality-disorder"
+            exact
+            component={BorderlinePersonalityDisorder}
+          />
+          <Route path="/depression" exact component={Depression} />
+          <Route
+            path="/dissociative-disorders"
+            exact
+            component={DissociativeDisorders}
+          />
+          <Route path="/eating-disorders" exact component={EatingDisorders} />
+          <Route
+            path="/obsessive-compulsive-disorder"
+            exact
+            component={ObsessiveCompulsiveDisorder}
+          />
+          <Route
+            path="/postpartum-depression"
+            exact
+            component={PostpartumDepression}
+          />
+          <Route
+            path="/posttraumatic-stress-disorder"
+            exact
+            component={PosttraumaticStressDisorder}
+          />
+          <Route
+            path="/schioaffective-disorder"
+            exact
+            component={SchioaffectiveDisorder}
+          />
+          <Route path="/schizophrenia" exact component={Schizophrenia} />
           <Route path="/result" exact component={Result} />
           <Route path="/resultunauth" exact component={ResultUnAuth} />
           <Route

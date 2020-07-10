@@ -10,7 +10,12 @@ export default class Learn extends Component {
 
     this.state = {
       mentalInfoBank: [],
+      search: "",
     };
+  }
+
+  updateSearch(event) {
+    this.setState({ search: event.target.value.substr(0, 20) });
   }
 
   getMentalInfo = () => {
@@ -26,6 +31,16 @@ export default class Learn extends Component {
   }
 
   render() {
+    let filteredMentalInfo = this.state.mentalInfoBank.filter((MentalInfo) => {
+      return (
+        MentalInfo.condition
+          .toLowerCase()
+          .indexOf(this.state.search.toLowerCase()) !== -1 ||
+        MentalInfo.synopsis
+          .toLowerCase()
+          .indexOf(this.state.search.toLowerCase()) !== -1
+      );
+    });
     return (
       <>
         <Helmet>
@@ -41,30 +56,26 @@ export default class Learn extends Component {
             <h1 className="h3  text-center font-weight-normal">
               MENTAL INFORMATION AND SUPPORT
             </h1>
-            <div className="searchinfo-container">
-              <div className="search-container">
-                <div className="search">
-                  <input
-                    id="zip-code-input"
-                    type="text"
-                    placeholder="Search by keyword or title"
-                  />
-                  <i className="fas fa-search" />
+            <form>
+              <div className="searchinfo-container">
+                <div className="search-container">
+                  <div className="search">
+                    <input
+                      id="zip-code-input"
+                      type="text"
+                      placeholder="Search by keyword or title"
+                      onChange={this.updateSearch.bind(this)}
+                    />
+                    <i className="fas fa-search" />
+                  </div>
                 </div>
               </div>
-            </div>
+            </form>
 
             <div className="grid-container">
-              {this.state.mentalInfoBank.length > 0 &&
-                this.state.mentalInfoBank.map(
-                  ({
-                    slug,
-                    condition,
-                    imgpath,
-                    intro_title,
-
-                    synopsis,
-                  }) => (
+              {filteredMentalInfo.length > 0 &&
+                filteredMentalInfo.map(
+                  ({ slug, condition, imgpath, intro_title, synopsis }) => (
                     <MentalInfoPreview
                       slug={slug}
                       imgpath={imgpath}

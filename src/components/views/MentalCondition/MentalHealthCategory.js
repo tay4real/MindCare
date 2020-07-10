@@ -2,8 +2,30 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Agreement from "./Agreement";
+import MentalHealthService from "../MentalHealthService";
 
 export class MentalHealthCategory extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mentalInfoBank: [],
+      search: "",
+    };
+  }
+
+  getMentalInfo = () => {
+    MentalHealthService().then((condition) => {
+      this.setState({
+        mentalInfoBank: condition,
+      });
+    });
+  };
+
+  componentDidMount() {
+    this.getMentalInfo();
+  }
+
   render() {
     const { isLoading, mentalconditions } = this.props;
     return (
@@ -37,6 +59,15 @@ export class MentalHealthCategory extends Component {
               {!isLoading ? (
                 mentalconditions.map((mentalcondition) => {
                   const { condition, slug } = mentalcondition;
+                  let filteredMentalInfo = this.state.mentalInfoBank.filter(
+                    (MentalInfo) => {
+                      return (
+                        MentalInfo.slug
+                          .toLowerCase()
+                          .indexOf(slug.toLowerCase()) !== -1
+                      );
+                    }
+                  );
                   return (
                     <Link
                       to={{
@@ -50,7 +81,15 @@ export class MentalHealthCategory extends Component {
                       style={{ textDecoration: "none", flex: "auto" }}
                     >
                       <div className="card">
-                        <h5>{condition} Test</h5>
+                        <h5
+                          data-toggle="tooltip"
+                          data-placement="bottom"
+                          title={filteredMentalInfo.map(
+                            ({ synopsis }) => synopsis
+                          )}
+                        >
+                          {condition} Test
+                        </h5>
                       </div>
                     </Link>
                   );
