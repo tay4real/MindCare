@@ -146,7 +146,7 @@ export default class BorderlinePersonalityDisorder extends Component {
         <div
           id="Overview"
           className="tabcontent"
-          style={{ display: this.state.overview ? "block" : "none" }}
+          style={{ display: this.state.overview ? "block" : "none", overflowY: "scroll" }}
         >
           <h1>{condition}</h1>
           <hr />

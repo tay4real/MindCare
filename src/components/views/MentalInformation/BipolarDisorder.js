@@ -14,9 +14,9 @@ export default class BipolarDisorder extends Component {
     this.onClickOverview = this.onClickOverview.bind(this);
     this.onClickSigns = this.onClickSigns.bind(this);
     this.onClickRisk = this.onClickRisk.bind(this);
-    this.onClickDiagnosis = this.onClickGeneralized.bind(this);
-    this.onClickOtherConditions = this.onClickPanic.bind(this);
-    this.onClickTreatment = this.onClickPhobia.bind(this);
+    this.onClickDiagnosis = this.onClickDiagnosis.bind(this);
+    this.onClickOtherConditions = this.onClickOtherConditions.bind(this);
+    this.onClickTreatment = this.onClickTreatment.bind(this);
   }
 
   onClickOverview() {
@@ -162,7 +162,10 @@ export default class BipolarDisorder extends Component {
         <div
           id="Overview"
           className="tabcontent"
-          style={{ display: this.state.overview ? "block" : "none" }}
+          style={{
+            display: this.state.overview ? "block" : "none",
+            overflowY: "scroll",
+          }}
         >
           <h1>Bipolar Disorder</h1>
           <hr />
@@ -181,7 +184,7 @@ export default class BipolarDisorder extends Component {
             indifferent, or hopeless periods (known as depressive episodes).
             Less severe manic periods are known as hypomanic episodes.
           </p>
-          <ul>
+          <ul style={{ paddingLeft: "12px" }}>
             <li>
               Bipolar I Disorder— defined by manic episodes that last at least 7
               days, or by manic symptoms that are so severe that the person
@@ -527,7 +530,7 @@ export default class BipolarDisorder extends Component {
             It is normal to have some inattention, unfocused motor activity, and
             impulsivity, but for people with ADHD, these behaviors:
           </p>
-          <ul>
+          <ul style={{ paddingLeft: "12px" }}>
             <li>are more severe</li>
             <li>occur more often</li>
             <li>
@@ -542,7 +545,7 @@ export default class BipolarDisorder extends Component {
             <h5>Inattention</h5>
             <p>People with symptoms of inattention may often:</p>
 
-            <ul>
+            <ul style={{ paddingLeft: "12px" }}>
               <li>
                 Overlook or miss details, make careless mistakes in schoolwork,
                 at work, or during other activities
@@ -591,7 +594,7 @@ export default class BipolarDisorder extends Component {
             <h5>Hyperactivity-Impulsivity</h5>
             <p>People with symptoms of hyperactivity-impulsivity may often:</p>
 
-            <ul>
+            <ul style={{ paddingLeft: "12px" }}>
               <li>Fidget and squirm in their seats</li>
               <li>
                 Have problems sustaining attention in tasks or play, including
@@ -658,7 +661,7 @@ export default class BipolarDisorder extends Component {
               feared object or situation.
             </p>
             <p>During a panic attack, people may experience:</p>
-            <ul>
+            <ul style={{ paddingLeft: "12px" }}>
               <li>
                 Heart palpitations, a pounding heartbeat, or an accelerated
                 heartrate
@@ -692,7 +695,7 @@ export default class BipolarDisorder extends Component {
               proportion to the actual danger caused by the situation or object.
             </p>
             <p>People with a phobia:</p>
-            <ul>
+            <ul style={{ paddingLeft: "12px" }}>
               <li>
                 May have an irrational or excessive worry about encountering the
                 feared object or situation
@@ -726,7 +729,7 @@ export default class BipolarDisorder extends Component {
             illnesses, several factors can contribute to ADHD, such as:
           </p>
 
-          <ul>
+          <ul style={{ paddingLeft: "12px" }}>
             <li>Genes</li>
             <li>
               Cigarette smoking, alcohol use, or drug use during pregnancy

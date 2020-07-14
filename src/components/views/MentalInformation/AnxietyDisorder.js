@@ -102,12 +102,13 @@ export default class AnxietyDisorder extends Component {
       treatment: true,
     });
   }
+
   render() {
     return (
       <div className="container " style={{ padding: "100px 16px" }}>
         <div className="tab">
           <button
-            className={this.state.overview ? "tablinks active " : "tablinks"}
+            className={this.state.overview ? "tablinks active" : "tablinks"}
             onClick={this.onClickOverview}
           >
             Overview
@@ -175,7 +176,10 @@ export default class AnxietyDisorder extends Component {
         <div
           id="Overview"
           className="tabcontent"
-          style={{ display: this.state.overview ? "block" : "none" }}
+          style={{
+            display: this.state.overview ? "block" : "none",
+            overflowY: "scroll",
+          }}
         >
           <h1>Anxiety Disorders</h1>
           <hr />
@@ -219,7 +223,7 @@ export default class AnxietyDisorder extends Component {
               interactions, school, and work.
             </p>
             <p>Generalized anxiety disorder symptoms include:</p>
-            <ul>
+            <ul style={{ paddingLeft: "12px" }}>
               <li>Feeling restless, wound-up, or on-edge</li>
               <li>Being easily fatigued</li>
               <li>Having difficulty concentrating; mind going blank</li>
@@ -246,7 +250,7 @@ export default class AnxietyDisorder extends Component {
               feared object or situation.
             </p>
             <p>During a panic attack, people may experience:</p>
-            <ul>
+            <ul style={{ paddingLeft: "12px" }}>
               <li>
                 Heart palpitations, a pounding heartbeat, or an accelerated
                 heartrate
@@ -280,7 +284,7 @@ export default class AnxietyDisorder extends Component {
               proportion to the actual danger caused by the situation or object.
             </p>
             <p>People with a phobia:</p>
-            <ul>
+            <ul style={{ paddingLeft: "12px" }}>
               <li>
                 May have an irrational or excessive worry about encountering the
                 feared object or situation
@@ -315,7 +319,7 @@ export default class AnxietyDisorder extends Component {
             general risk factors for all types of anxiety disorders include:
           </p>
 
-          <ul>
+          <ul style={{ paddingLeft: "12px" }}>
             <li>
               Temperamental traits of shyness or behavioral inhibition in
               childhood
@@ -371,7 +375,7 @@ export default class AnxietyDisorder extends Component {
             for them.
           </p>
 
-          <ul>
+          <ul style={{ paddingLeft: "12px" }}>
             <li>
               Temperamental traits of shyness or behavioral inhibition in
               childhood

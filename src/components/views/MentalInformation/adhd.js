@@ -153,8 +153,9 @@ export default class ADHD extends Component {
 
   render() {
     let condition = "Attention-Deficit Hyperactivity Disorder";
+
     return (
-      <div className="container " style={{ padding: "100px 16px" }}>
+      <div className="container" style={{ padding: "100px 16px" }}>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -246,7 +247,10 @@ export default class ADHD extends Component {
         <div
           id="Overview"
           className="tabcontent"
-          style={{ display: this.state.overview ? "block" : "none" }}
+          style={{
+            display: this.state.overview ? "block" : "none",
+            overflowY: "scroll",
+          }}
         >
           <h1>{condition}</h1>
           <hr />

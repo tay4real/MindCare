@@ -175,7 +175,10 @@ export default class SeasonalPatternDepression extends Component {
         <div
           id="Overview"
           className="tabcontent"
-          style={{ display: this.state.overview ? "block" : "none" }}
+          style={{
+            display: this.state.overview ? "block" : "none",
+            overflowY: "scroll",
+          }}
         >
           <h1>Anxiety Disorders</h1>
           <hr />
@@ -200,7 +203,10 @@ export default class SeasonalPatternDepression extends Component {
         <div
           id="Signs"
           className="tabcontent"
-          style={{ display: this.state.signs ? "block" : "none" }}
+          style={{
+            display: this.state.signs ? "block" : "none",
+            overflowY: "scroll",
+          }}
         >
           <h1>Anxiety Disorders</h1>
           <hr />
@@ -219,7 +225,7 @@ export default class SeasonalPatternDepression extends Component {
               interactions, school, and work.
             </p>
             <p>Generalized anxiety disorder symptoms include:</p>
-            <ul>
+            <ul style={{ paddingLeft: "12px" }}>
               <li>Feeling restless, wound-up, or on-edge</li>
               <li>Being easily fatigued</li>
               <li>Having difficulty concentrating; mind going blank</li>
@@ -246,7 +252,7 @@ export default class SeasonalPatternDepression extends Component {
               feared object or situation.
             </p>
             <p>During a panic attack, people may experience:</p>
-            <ul>
+            <ul style={{ paddingLeft: "12px" }}>
               <li>
                 Heart palpitations, a pounding heartbeat, or an accelerated
                 heartrate
@@ -280,7 +286,7 @@ export default class SeasonalPatternDepression extends Component {
               proportion to the actual danger caused by the situation or object.
             </p>
             <p>People with a phobia:</p>
-            <ul>
+            <ul style={{ paddingLeft: "12px" }}>
               <li>
                 May have an irrational or excessive worry about encountering the
                 feared object or situation
@@ -315,7 +321,7 @@ export default class SeasonalPatternDepression extends Component {
             general risk factors for all types of anxiety disorders include:
           </p>
 
-          <ul>
+          <ul style={{ paddingLeft: "12px" }}>
             <li>
               Temperamental traits of shyness or behavioral inhibition in
               childhood
@@ -371,7 +377,7 @@ export default class SeasonalPatternDepression extends Component {
             for them.
           </p>
 
-          <ul>
+          <ul style={{ paddingLeft: "12px" }}>
             <li>
               Temperamental traits of shyness or behavioral inhibition in
               childhood
