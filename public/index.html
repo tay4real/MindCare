@@ -58,6 +58,14 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("sw.js")
+          .then((r) => console.log("SW Registered"))
+          .catch(console.error);
+      }
+    </script>
     <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
