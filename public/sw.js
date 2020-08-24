@@ -3,7 +3,7 @@ const version = 2;
 self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open(version).then(function (cache) {
-      return cache.addAll(["./public/index.html"]);
+      return cache.addAll(["/"]);
     })
   );
 });
@@ -30,7 +30,7 @@ self.addEventListener("fetch", function (event) {
       if (res) return res;
 
       if (!navigator.onLine)
-        return caches.match(new Request("./public/index.html"));
+        return caches.match(new Request("/"));
 
       return fetchAndUpdate(event.request);
     })
