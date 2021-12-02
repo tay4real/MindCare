@@ -48,7 +48,7 @@ export default function Footer() {
             color="textSecondary"
             component="p"
           >
-            Team-055 BuildforSDG
+            Mndcare | OT Technologies
           </Typography>
           <Copyright />
         </Container>
